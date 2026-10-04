@@ -41,3 +41,6 @@ example
 # generated native folders
 /ios
 /android
+
+# graphql codegen output
+src/graphql/__generated__/
