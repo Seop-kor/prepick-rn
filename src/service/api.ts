@@ -1,6 +1,8 @@
 import type { DocumentTypeDecoration } from "@graphql-typed-document-node/core";
 import { create as createAxios } from "axios";
 
+import { healthCheck } from "@/graphql/queries";
+
 import { getAccessToken } from "@/stores/auth";
 
 declare module "axios" {
@@ -36,7 +38,7 @@ export class GraphQLError extends Error {
   }
 }
 
-export async function request<TData, TVariables>(
+export async function requestGraphQL<TData, TVariables>(
   document: DocumentTypeDecoration<TData, TVariables>,
   variables: TVariables,
   options?: { skipAuth?: boolean },
@@ -52,9 +54,15 @@ export async function request<TData, TVariables>(
 }
 
 class API {
-  // GraphQL:  sendOtp(phone: string) { return request(SendOtp, { phone }).then((r) => r.sendOtp); }
-  // Public:   request(Document, variables, { skipAuth: true })
+  // GraphQL:  sendOtp(phone: string) { return requestGraphQL(SendOtp, { phone }).then((r) => r.sendOtp); }
+  // Public:   requestGraphQL(Document, variables, { skipAuth: true })
   // REST:     http.post('/upload', form).then((r) => r.data)
+  healthCheck() {
+    return requestGraphQL(healthCheck, {}, { skipAuth: true }).then(
+      (res) => res.healthCheck,
+    );
+  }
 }
 
-export default new API();
+const instance = new API();
+export default instance;
