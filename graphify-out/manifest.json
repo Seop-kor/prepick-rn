@@ -54,15 +54,15 @@
     "semantic_hash": ""
   },
   "src/app/(auth)/_layout.tsx": {
-    "mtime": 1791121378.774248,
-    "seen": 1791199976.844546,
-    "ast_hash": "a092cb1c8a6d2cb5bedb16ed3edef632",
+    "mtime": 1791560407.6485295,
+    "seen": 1791560546.9678369,
+    "ast_hash": "c690ace2913c5e11c4eb16b57971137c",
     "semantic_hash": ""
   },
   "src/app/(auth)/login.tsx": {
-    "mtime": 1791121378.775729,
-    "seen": 1791199976.844547,
-    "ast_hash": "711f36da9d797fb11399ee8a299c3f00",
+    "mtime": 1791560482.4386797,
+    "seen": 1791560546.967838,
+    "ast_hash": "eb8698cd08ad3a44dbbf7b33a7c3ccd5",
     "semantic_hash": ""
   },
   "src/app/(tabs)/_layout.tsx": {
@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/app/index.tsx": {
-    "mtime": 1791131134.7296965,
-    "seen": 1791199976.8445492,
-    "ast_hash": "226efb729ea529821761627a313745de",
+    "mtime": 1791560482.4405587,
+    "seen": 1791560546.967849,
+    "ast_hash": "86ea7a834218356c51f80ceaab31bf46",
     "semantic_hash": ""
   },
   "src/graphql/mutations.ts": {
@@ -102,8 +102,8 @@
     "semantic_hash": ""
   },
   "src/service/api.ts": {
-    "mtime": 1791211586.1942532,
-    "seen": 1791211587.641485,
+    "mtime": 1791211774.792766,
+    "seen": 1791560135.1185338,
     "ast_hash": "c83401ee428e10be7a4022f985098253",
     "semantic_hash": ""
   },
@@ -114,15 +114,15 @@
     "semantic_hash": ""
   },
   "src/theme/color.ts": {
-    "mtime": 1791123976.2164176,
-    "seen": 1791199976.844552,
-    "ast_hash": "46d21133800da6b4e8fefae238222133",
+    "mtime": 1791560130.1440723,
+    "seen": 1791560135.118536,
+    "ast_hash": "e48b6a8f992a90a78690bdb9e95bb7e0",
     "semantic_hash": ""
   },
   "src/theme/index.ts": {
-    "mtime": 1791131639.6557903,
-    "seen": 1791199976.844553,
-    "ast_hash": "084762059bf5de36d205bcd3b6b00b40",
+    "mtime": 1791560363.765702,
+    "seen": 1791560546.9678562,
+    "ast_hash": "c9e5ab0011635c41038f26116ef74eb8",
     "semantic_hash": ""
   },
   "tsconfig.json": {
@@ -351,6 +351,72 @@
     "mtime": 1791211578.7922547,
     "seen": 1791211582.840395,
     "ast_hash": "017fb7f7246dbeda580d1f26d9ee9efc",
+    "semantic_hash": ""
+  },
+  "docs/spec/smart-order-consumer-app-PRD.md": {
+    "mtime": 1791552584.4885242,
+    "seen": 1791560135.118551,
+    "ast_hash": "3ec18120a34047bbc14999eea0464efb",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/signup/done.tsx": {
+    "mtime": 1791560475.0277393,
+    "seen": 1791560546.967839,
+    "ast_hash": "59f19980b5409ba2498ead6d16864122",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/signup/name.tsx": {
+    "mtime": 1791560443.82992,
+    "seen": 1791560546.967839,
+    "ast_hash": "1da4e746ffb2fbce5a66ab6e5076fc9f",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/signup/otp.tsx": {
+    "mtime": 1791560491.5075758,
+    "seen": 1791560546.96784,
+    "ast_hash": "594f20ddac2aedf29f2f7bfb8634579d",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/signup/password.tsx": {
+    "mtime": 1791560473.9933105,
+    "seen": 1791560546.967841,
+    "ast_hash": "31833901227cd7a5474c6f28e1f9f0df",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/signup/phone.tsx": {
+    "mtime": 1791560444.8516712,
+    "seen": 1791560546.967841,
+    "ast_hash": "55f7baad7919b2f3c33be0c481e26b0e",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/terms.tsx": {
+    "mtime": 1791560442.8117414,
+    "seen": 1791560546.967842,
+    "ast_hash": "cc5deccf3b9598830d64d9c06682f45a",
+    "semantic_hash": ""
+  },
+  "src/app/(auth)/welcome.tsx": {
+    "mtime": 1791560416.0710292,
+    "seen": 1791560546.967843,
+    "ast_hash": "be23a58e0364376ae9addc87c6b729e5",
+    "semantic_hash": ""
+  },
+  "src/components/AuthScreen.tsx": {
+    "mtime": 1791560398.498923,
+    "seen": 1791560546.96785,
+    "ast_hash": "65dc79631300ff42c6c95fe160df321f",
+    "semantic_hash": ""
+  },
+  "src/components/TextField.tsx": {
+    "mtime": 1791560365.816095,
+    "seen": 1791560546.967851,
+    "ast_hash": "970735c2dee908f850197575c022ea25",
+    "semantic_hash": ""
+  },
+  "src/utils/phone.ts": {
+    "mtime": 1791560364.7918375,
+    "seen": 1791560546.967857,
+    "ast_hash": "bac407b22c5489f4b8360ef46f1f4f8c",
     "semantic_hash": ""
   }
 }

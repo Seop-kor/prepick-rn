@@ -4,7 +4,8 @@
   "2": "expo",
   "3": "What You Must Do When Invoked",
   "4": "client.ts",
-  "5": "app/_layout.tsx",
+  "5": "auth.ts",
+  "6": "smart-order-consumer-app-PRD.md",
   "7": "devDependencies",
   "8": "graphify reference: extra exports and benchmark",
   "9": "scripts",
@@ -19,5 +20,17 @@
   "18": "graphify reference: GitHub clone and cross-repo merge",
   "19": "graphify reference: transcribe video and audio",
   "20": ".claude/CLAUDE.md",
-  "21": "extraction-spec.md"
+  "21": "extraction-spec.md",
+  "22": "2.1 포함 기능",
+  "23": "AuthScreen.tsx",
+  "24": "4.2 회원가입 화면",
+  "25": "4.3 홈",
+  "26": "5. 주요 사용자 흐름",
+  "27": "7. 백엔드 기능 범위",
+  "28": "8. 필요한 API 목록",
+  "29": "4.6 매장 상세",
+  "30": "4.8 장바구니",
+  "31": "4.11 주문내역",
+  "32": "4.7 메뉴 상세",
+  "33": "home.tsx"
 }

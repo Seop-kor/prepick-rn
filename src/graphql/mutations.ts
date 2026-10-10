@@ -1,4 +1,4 @@
-import { graphql } from "./__generated__";
+import { graphql } from './__generated__';
 
 export const login = graphql(`
   mutation login($input: LoginInput!) {
