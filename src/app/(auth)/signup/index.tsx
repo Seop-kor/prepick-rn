@@ -1,12 +1,12 @@
 import { Stack } from 'expo-router';
 import { usePreventRemove } from 'expo-router/react-navigation';
 import { useState } from 'react';
-import { Alert } from 'react-native';
 
 import AuthForm from '@/components/(auth)/AuthForm';
 import OtpInput, { CODE_LENGTH } from '@/components/(auth)/signup/OtpInput';
 import SignupDone from '@/components/(auth)/signup/SignupDone';
 import TextField from '@/components/(auth)/TextField';
+import AlertModal from '@/components/AlertModal';
 import { GraphQLError } from '@/service/client';
 import { setTokens } from '@/stores/auth';
 import { useSendSignupOtp, useSignUp, useVerifySignupOtp } from '@/tanstack/hooks';
@@ -36,9 +36,8 @@ function getOtpRequestErrorMessage(error: Error | null) {
     : '요청 횟수를 초과했어요. 잠시 후 다시 시도해주세요.';
 }
 
-function alertRetryLater() {
-  Alert.alert('잠시 후 다시 시도해주세요.');
-}
+const RETRY_ALERT = { title: '요청을 처리하지 못했어요', message: '잠시 후 다시 시도해주세요.' };
+const EXPIRED_ALERT = { title: '인증이 만료됐어요', message: '휴대폰 번호를 다시 인증해주세요.' };
 
 export default function SignupScreen() {
   const [step, setStep] = useState<Step>('name');
@@ -50,8 +49,19 @@ export default function SignupScreen() {
   const sendOtp = useSendSignupOtp();
   const verifyOtp = useVerifySignupOtp();
   const signUp = useSignUp();
+  const [alert, setAlert] = useState(RETRY_ALERT);
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
 
   const stepIndex = STEPS.indexOf(step);
+
+  function openAlert(next: typeof RETRY_ALERT) {
+    setAlert(next);
+    setIsAlertVisible(true);
+  }
+
+  function handleCloseAlert() {
+    setIsAlertVisible(false);
+  }
 
   function handleStepBack() {
     setStep(STEPS[stepIndex - 1]);
@@ -71,7 +81,7 @@ export default function SignupScreen() {
   }
 
   function handleSendOtpError(e: Error) {
-    if (!getOtpRequestErrorMessage(e)) alertRetryLater();
+    if (!getOtpRequestErrorMessage(e)) openAlert(RETRY_ALERT);
   }
 
   function handleSendOtpSuccess() {
@@ -95,7 +105,7 @@ export default function SignupScreen() {
   }
 
   function handleVerifyOtpError(e: Error) {
-    if (getErrorCode(e) !== 'BAD_USER_INPUT') alertRetryLater();
+    if (getErrorCode(e) !== 'BAD_USER_INPUT') openAlert(RETRY_ALERT);
   }
 
   function handleChangeCode(next: string) {
@@ -118,11 +128,11 @@ export default function SignupScreen() {
       return;
     }
     if (e.message === 'Invalid verification token') {
-      Alert.alert('인증이 만료됐어요. 다시 인증해주세요.');
+      openAlert(EXPIRED_ALERT);
       setStep('phone');
       return;
     }
-    alertRetryLater();
+    openAlert(RETRY_ALERT);
   }
 
   function handleSignup() {
@@ -137,6 +147,8 @@ export default function SignupScreen() {
   function handleStart() {
     if (signUp.data) setTokens(signUp.data);
   }
+
+  const alertModal = <AlertModal isVisible={isAlertVisible} {...alert} onClose={handleCloseAlert} />;
 
   if (step === 'done') {
     return (
@@ -171,35 +183,38 @@ export default function SignupScreen() {
 
   if (step === 'phone') {
     return (
-      <AuthForm
-        title="휴대폰 번호를 입력해주세요"
-        subtitle="로그인할 때 아이디로 쓰여요."
-        step={2}
-        button={{
-          title: '인증번호 받기',
-          isDisabled: !isValidPhone(phone),
-          isLoading: sendOtp.isPending,
-          onPress: handleRequestCode
-        }}
-      >
-        <TextField
-          key="phone"
-          label="휴대폰 번호"
-          placeholder="010-0000-0000"
-          value={phone}
-          onChangeText={handleChangePhone}
-          keyboardType="number-pad"
-          textContentType="telephoneNumber"
-          autoComplete="tel"
-          error={
-            getOtpRequestErrorMessage(sendOtp.error) ??
-            (getErrorCode(signUp.error) === 'PHONE_NUMBER_ALREADY_REGISTERED'
-              ? ALREADY_REGISTERED_MESSAGE
-              : undefined)
-          }
-          autoFocus
-        />
-      </AuthForm>
+      <>
+        <AuthForm
+          title="휴대폰 번호를 입력해주세요"
+          subtitle="로그인할 때 아이디로 쓰여요."
+          step={2}
+          button={{
+            title: '인증번호 받기',
+            isDisabled: !isValidPhone(phone),
+            isLoading: sendOtp.isPending,
+            onPress: handleRequestCode
+          }}
+        >
+          <TextField
+            key="phone"
+            label="휴대폰 번호"
+            placeholder="010-0000-0000"
+            value={phone}
+            onChangeText={handleChangePhone}
+            keyboardType="number-pad"
+            textContentType="telephoneNumber"
+            autoComplete="tel"
+            error={
+              getOtpRequestErrorMessage(sendOtp.error) ??
+              (getErrorCode(signUp.error) === 'PHONE_NUMBER_ALREADY_REGISTERED'
+                ? ALREADY_REGISTERED_MESSAGE
+                : undefined)
+            }
+            autoFocus
+          />
+        </AuthForm>
+        {alertModal}
+      </>
     );
   }
 
@@ -207,20 +222,23 @@ export default function SignupScreen() {
     const otp = sendOtp.data;
     const isInvalidCode = getErrorCode(verifyOtp.error) === 'BAD_USER_INPUT';
     return (
-      <AuthForm title={'문자로 받은\n인증번호 6자리를 입력해주세요'} subtitle={phone} step={3}>
-        <OtpInput
-          code={code}
-          onChangeCode={handleChangeCode}
-          expiresAt={otp && Date.parse(otp.expiresAt)}
-          retryAt={otp && sendOtp.submittedAt + otp.retryAfterSeconds * 1000}
-          error={
-            isInvalidCode
-              ? '인증번호가 올바르지 않아요. 계속 실패하면 다시 받아주세요.'
-              : getOtpRequestErrorMessage(sendOtp.error)
-          }
-          onResend={handleResendCode}
-        />
-      </AuthForm>
+      <>
+        <AuthForm title={'문자로 받은\n인증번호 6자리를 입력해주세요'} subtitle={phone} step={3}>
+          <OtpInput
+            code={code}
+            onChangeCode={handleChangeCode}
+            expiresAt={otp && Date.parse(otp.expiresAt)}
+            retryAt={otp && sendOtp.submittedAt + otp.retryAfterSeconds * 1000}
+            error={
+              isInvalidCode
+                ? '인증번호가 올바르지 않아요. 계속 실패하면 다시 받아주세요.'
+                : getOtpRequestErrorMessage(sendOtp.error)
+            }
+            onResend={handleResendCode}
+          />
+        </AuthForm>
+        {alertModal}
+      </>
     );
   }
 
@@ -232,41 +250,44 @@ export default function SignupScreen() {
   const isMismatched = !!confirm && !isMatched && Array.from(confirm).length >= passwordLength;
 
   return (
-    <AuthForm
-      title="비밀번호를 정해주세요"
-      step={4}
-      button={{
-        title: '가입하기',
-        isDisabled: !isValidPassword || !isMatched,
-        isLoading: signUp.isPending,
-        onPress: handleSignup
-      }}
-    >
-      <TextField
-        key="password"
-        label="비밀번호"
-        placeholder="8자 이상"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        textContentType="newPassword"
-        autoComplete="new-password"
-        hint={`${MIN_PASSWORD_LENGTH}자 이상 입력해주세요`}
-        error={isTooLong ? '비밀번호가 너무 길어요. 조금 줄여주세요.' : undefined}
-        autoFocus
-      />
-      <TextField
-        key="confirm"
-        label="비밀번호 확인"
-        placeholder="한 번 더 입력"
-        value={confirm}
-        onChangeText={setConfirm}
-        secureTextEntry
-        textContentType="newPassword"
-        autoComplete="new-password"
-        success={isValidPassword && isMatched ? '비밀번호가 일치해요' : undefined}
-        error={isMismatched ? '비밀번호가 서로 달라요.' : undefined}
-      />
-    </AuthForm>
+    <>
+      <AuthForm
+        title="비밀번호를 정해주세요"
+        step={4}
+        button={{
+          title: '가입하기',
+          isDisabled: !isValidPassword || !isMatched,
+          isLoading: signUp.isPending,
+          onPress: handleSignup
+        }}
+      >
+        <TextField
+          key="password"
+          label="비밀번호"
+          placeholder="8자 이상"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          textContentType="newPassword"
+          autoComplete="new-password"
+          hint={`${MIN_PASSWORD_LENGTH}자 이상 입력해주세요`}
+          error={isTooLong ? '비밀번호가 너무 길어요. 조금 줄여주세요.' : undefined}
+          autoFocus
+        />
+        <TextField
+          key="confirm"
+          label="비밀번호 확인"
+          placeholder="한 번 더 입력"
+          value={confirm}
+          onChangeText={setConfirm}
+          secureTextEntry
+          textContentType="newPassword"
+          autoComplete="new-password"
+          success={isValidPassword && isMatched ? '비밀번호가 일치해요' : undefined}
+          error={isMismatched ? '비밀번호가 서로 달라요.' : undefined}
+        />
+      </AuthForm>
+      {alertModal}
+    </>
   );
 }

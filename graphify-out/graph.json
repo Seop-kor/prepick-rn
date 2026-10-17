@@ -17,6 +17,19 @@
       "source_location": "L16"
     },
     {
+      "id": "src_components_alertmodal_props",
+      "label": "Props",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L9"
+    },
+    {
       "id": "src_components_auth_authform_props",
       "label": "Props",
       "_callable": true,
@@ -101,7 +114,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "api",
       "source_file": "src/service/api.ts",
@@ -113,7 +126,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 34,
       "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "axiosrequestconfig",
@@ -126,7 +139,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 34,
       "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "graphqlerror",
@@ -139,7 +152,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 34,
       "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "graphqlresponse",
@@ -153,7 +166,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "authstate",
       "source_file": "src/stores/auth.ts",
@@ -196,42 +209,6 @@
       "source_location": "L11"
     },
     {
-      "id": "src_app_auth_welcome_index_welcomescreen",
-      "label": "WelcomeScreen()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "signup/index.tsx",
-      "file_type": "code",
-      "norm_label": "welcomescreen()",
-      "source_file": "src/app/(auth)/welcome/index.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_app_auth_welcome_index_welcomescreen_handlelogin",
-      "label": "handleLogin()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "signup/index.tsx",
-      "file_type": "code",
-      "norm_label": "handlelogin()",
-      "source_file": "src/app/(auth)/welcome/index.tsx",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_app_auth_welcome_index_welcomescreen_handlesignup",
-      "label": "handleSignup()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "signup/index.tsx",
-      "file_type": "code",
-      "norm_label": "handlesignup()",
-      "source_file": "src/app/(auth)/welcome/index.tsx",
-      "source_location": "L14"
-    },
-    {
       "id": "src_app_tabs_layout_tabslayout",
       "label": "TabsLayout()",
       "_callable": true,
@@ -242,6 +219,18 @@
       "norm_label": "tabslayout()",
       "source_file": "src/app/(tabs)/_layout.tsx",
       "source_location": "L3"
+    },
+    {
+      "id": "src_components_alertmodal_alertmodal",
+      "label": "AlertModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "alertmodal()",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L16"
     },
     {
       "id": "src_components_auth_authform_authform",
@@ -417,11 +406,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "handlestart()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L137"
+      "source_location": "L147"
     },
     {
       "id": "src_service_api_api_healthcheck",
@@ -429,7 +418,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".healthcheck()",
       "source_file": "src/service/api.ts",
@@ -441,7 +430,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".login()",
       "source_file": "src/service/api.ts",
@@ -453,7 +442,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".sendsignupotp()",
       "source_file": "src/service/api.ts",
@@ -465,7 +454,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".signup()",
       "source_file": "src/service/api.ts",
@@ -477,11 +466,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".verifysignupotp()",
       "source_file": "src/service/api.ts",
       "source_location": "L27"
+    },
+    {
+      "id": "src_service_client_dorefresh",
+      "label": "doRefresh()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "dorefresh()",
+      "source_file": "src/service/client.ts",
+      "source_location": "L62"
     },
     {
       "id": "src_service_client_graphqlerror_code",
@@ -489,11 +490,59 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": ".code()",
       "source_file": "src/service/client.ts",
       "source_location": "L42"
+    },
+    {
+      "id": "src_service_client_graphqlerror_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "src/service/client.ts",
+      "source_location": "L38"
+    },
+    {
+      "id": "src_service_client_isaccesstokenexpiring",
+      "label": "isAccessTokenExpiring()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "isaccesstokenexpiring()",
+      "source_file": "src/service/client.ts",
+      "source_location": "L88"
+    },
+    {
+      "id": "src_service_client_postgraphql",
+      "label": "postGraphQL()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "postgraphql()",
+      "source_file": "src/service/client.ts",
+      "source_location": "L47"
+    },
+    {
+      "id": "src_service_client_refreshtokens",
+      "label": "refreshTokens()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "refreshtokens()",
+      "source_file": "src/service/client.ts",
+      "source_location": "L82"
     },
     {
       "id": "src_service_client_requestgraphql",
@@ -501,11 +550,59 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "requestgraphql()",
       "source_file": "src/service/client.ts",
       "source_location": "L93"
+    },
+    {
+      "id": "src_stores_auth_cleartokens",
+      "label": "clearTokens()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "cleartokens()",
+      "source_file": "src/stores/auth.ts",
+      "source_location": "L79"
+    },
+    {
+      "id": "src_stores_auth_getaccesstoken",
+      "label": "getAccessToken()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "getaccesstoken()",
+      "source_file": "src/stores/auth.ts",
+      "source_location": "L33"
+    },
+    {
+      "id": "src_stores_auth_getaccesstokenexpiresat",
+      "label": "getAccessTokenExpiresAt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "getaccesstokenexpiresat()",
+      "source_file": "src/stores/auth.ts",
+      "source_location": "L41"
+    },
+    {
+      "id": "src_stores_auth_getrefreshtoken",
+      "label": "getRefreshToken()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "getrefreshtoken()",
+      "source_file": "src/stores/auth.ts",
+      "source_location": "L37"
     },
     {
       "id": "src_stores_auth_settokens",
@@ -513,7 +610,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "settokens()",
       "source_file": "src/stores/auth.ts",
@@ -525,7 +622,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "uselogin()",
       "source_file": "src/tanstack/hooks.ts",
@@ -537,7 +634,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "usesendsignupotp()",
       "source_file": "src/tanstack/hooks.ts",
@@ -549,7 +646,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "usesignup()",
       "source_file": "src/tanstack/hooks.ts",
@@ -561,7 +658,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "useverifysignupotp()",
       "source_file": "src/tanstack/hooks.ts",
@@ -573,7 +670,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "login()",
       "source_file": "src/tanstack/mutations.ts",
@@ -585,7 +682,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "sendsignupotp()",
       "source_file": "src/tanstack/mutations.ts",
@@ -597,7 +694,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "signup()",
       "source_file": "src/tanstack/mutations.ts",
@@ -609,7 +706,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "verifysignupotp()",
       "source_file": "src/tanstack/mutations.ts",
@@ -621,7 +718,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "todigits()",
       "source_file": "src/utils/phone.ts",
@@ -637,7 +734,7 @@
       "file_type": "code",
       "norm_label": "loginscreen()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L13"
+      "source_location": "L14"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handlechangepassword",
@@ -649,7 +746,7 @@
       "file_type": "code",
       "norm_label": "handlechangepassword()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L26"
+      "source_location": "L28"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handlechangephone",
@@ -661,7 +758,19 @@
       "file_type": "code",
       "norm_label": "handlechangephone()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L21"
+      "source_location": "L23"
+    },
+    {
+      "id": "src_app_auth_login_index_loginscreen_handleclosealert",
+      "label": "handleCloseAlert()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "SignupScreen",
+      "file_type": "code",
+      "norm_label": "handleclosealert()",
+      "source_file": "src/app/(auth)/login/index.tsx",
+      "source_location": "L42"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handlelogin",
@@ -673,7 +782,7 @@
       "file_type": "code",
       "norm_label": "handlelogin()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L41"
+      "source_location": "L47"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handleloginerror",
@@ -685,7 +794,7 @@
       "file_type": "code",
       "norm_label": "handleloginerror()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L35"
+      "source_location": "L37"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handlesignup",
@@ -697,7 +806,7 @@
       "file_type": "code",
       "norm_label": "handlesignup()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L45"
+      "source_location": "L51"
     },
     {
       "id": "src_app_auth_login_index_loginscreen_handletogglepassword",
@@ -709,19 +818,7 @@
       "file_type": "code",
       "norm_label": "handletogglepassword()",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L31"
-    },
-    {
-      "id": "src_app_auth_signup_index_alertretrylater",
-      "label": "alertRetryLater()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 35,
-      "community_name": "SignupScreen",
-      "file_type": "code",
-      "norm_label": "alertretrylater()",
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L39"
+      "source_location": "L33"
     },
     {
       "id": "src_app_auth_signup_index_geterrorcode",
@@ -757,7 +854,7 @@
       "file_type": "code",
       "norm_label": "signupscreen()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L43"
+      "source_location": "L42"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlechangecode",
@@ -769,7 +866,7 @@
       "file_type": "code",
       "norm_label": "handlechangecode()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L101"
+      "source_location": "L111"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlechangephone",
@@ -781,7 +878,19 @@
       "file_type": "code",
       "norm_label": "handlechangephone()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L67"
+      "source_location": "L77"
+    },
+    {
+      "id": "src_app_auth_signup_index_signupscreen_handleclosealert",
+      "label": "handleCloseAlert()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "SignupScreen",
+      "file_type": "code",
+      "norm_label": "handleclosealert()",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L62"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlerequestcode",
@@ -793,7 +902,7 @@
       "file_type": "code",
       "norm_label": "handlerequestcode()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L82"
+      "source_location": "L92"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handleresendcode",
@@ -805,7 +914,7 @@
       "file_type": "code",
       "norm_label": "handleresendcode()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L86"
+      "source_location": "L96"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesendotperror",
@@ -817,7 +926,7 @@
       "file_type": "code",
       "norm_label": "handlesendotperror()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L73"
+      "source_location": "L83"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesendotpsuccess",
@@ -829,7 +938,7 @@
       "file_type": "code",
       "norm_label": "handlesendotpsuccess()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L77"
+      "source_location": "L87"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesignup",
@@ -841,7 +950,7 @@
       "file_type": "code",
       "norm_label": "handlesignup()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L128"
+      "source_location": "L138"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesignuperror",
@@ -853,7 +962,7 @@
       "file_type": "code",
       "norm_label": "handlesignuperror()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L115"
+      "source_location": "L125"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesignupsuccess",
@@ -865,7 +974,7 @@
       "file_type": "code",
       "norm_label": "handlesignupsuccess()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L111"
+      "source_location": "L121"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlestepback",
@@ -877,7 +986,7 @@
       "file_type": "code",
       "norm_label": "handlestepback()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L56"
+      "source_location": "L66"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handlesubmitname",
@@ -889,7 +998,7 @@
       "file_type": "code",
       "norm_label": "handlesubmitname()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L63"
+      "source_location": "L73"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handleverifyotperror",
@@ -901,7 +1010,7 @@
       "file_type": "code",
       "norm_label": "handleverifyotperror()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L97"
+      "source_location": "L107"
     },
     {
       "id": "src_app_auth_signup_index_signupscreen_handleverifyotpsuccess",
@@ -913,7 +1022,19 @@
       "file_type": "code",
       "norm_label": "handleverifyotpsuccess()",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L93"
+      "source_location": "L103"
+    },
+    {
+      "id": "src_app_auth_signup_index_signupscreen_openalert",
+      "label": "openAlert()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "SignupScreen",
+      "file_type": "code",
+      "norm_label": "openalert()",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L57"
     },
     {
       "id": "src_utils_phone_formatphone",
@@ -988,12 +1109,48 @@
       "source_location": "L20"
     },
     {
+      "id": "src_app_auth_welcome_index_welcomescreen",
+      "label": "WelcomeScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "WelcomeScreen",
+      "file_type": "code",
+      "norm_label": "welcomescreen()",
+      "source_file": "src/app/(auth)/welcome/index.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_app_auth_welcome_index_welcomescreen_handlelogin",
+      "label": "handleLogin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "WelcomeScreen",
+      "file_type": "code",
+      "norm_label": "handlelogin()",
+      "source_file": "src/app/(auth)/welcome/index.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_app_auth_welcome_index_welcomescreen_handlesignup",
+      "label": "handleSignup()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "WelcomeScreen",
+      "file_type": "code",
+      "norm_label": "handlesignup()",
+      "source_file": "src/app/(auth)/welcome/index.tsx",
+      "source_location": "L14"
+    },
+    {
       "id": "src_app_index_indexscreen",
       "label": "IndexScreen()",
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "indexscreen()",
       "source_file": "src/app/index.tsx",
@@ -1005,119 +1162,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "rootlayout()",
       "source_file": "src/app/_layout.tsx",
       "source_location": "L17"
-    },
-    {
-      "id": "src_service_client_dorefresh",
-      "label": "doRefresh()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "dorefresh()",
-      "source_file": "src/service/client.ts",
-      "source_location": "L62"
-    },
-    {
-      "id": "src_service_client_graphqlerror_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "src/service/client.ts",
-      "source_location": "L38"
-    },
-    {
-      "id": "src_service_client_isaccesstokenexpiring",
-      "label": "isAccessTokenExpiring()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "isaccesstokenexpiring()",
-      "source_file": "src/service/client.ts",
-      "source_location": "L88"
-    },
-    {
-      "id": "src_service_client_postgraphql",
-      "label": "postGraphQL()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "postgraphql()",
-      "source_file": "src/service/client.ts",
-      "source_location": "L47"
-    },
-    {
-      "id": "src_service_client_refreshtokens",
-      "label": "refreshTokens()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "refreshtokens()",
-      "source_file": "src/service/client.ts",
-      "source_location": "L82"
-    },
-    {
-      "id": "src_stores_auth_cleartokens",
-      "label": "clearTokens()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "cleartokens()",
-      "source_file": "src/stores/auth.ts",
-      "source_location": "L79"
-    },
-    {
-      "id": "src_stores_auth_getaccesstoken",
-      "label": "getAccessToken()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "getaccesstoken()",
-      "source_file": "src/stores/auth.ts",
-      "source_location": "L33"
-    },
-    {
-      "id": "src_stores_auth_getaccesstokenexpiresat",
-      "label": "getAccessTokenExpiresAt()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "getaccesstokenexpiresat()",
-      "source_file": "src/stores/auth.ts",
-      "source_location": "L41"
-    },
-    {
-      "id": "src_stores_auth_getrefreshtoken",
-      "label": "getRefreshToken()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "getrefreshtoken()",
-      "source_file": "src/stores/auth.ts",
-      "source_location": "L37"
     },
     {
       "id": "src_stores_auth_hydrateauth",
@@ -1125,7 +1174,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "hydrateauth()",
       "source_file": "src/stores/auth.ts",
@@ -1137,7 +1186,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "useishydrated()",
       "source_file": "src/stores/auth.ts",
@@ -1149,7 +1198,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "useisloggedin()",
       "source_file": "src/stores/auth.ts",
@@ -1528,17 +1577,6 @@
       "norm_label": "react-native-gesture-handler",
       "source_file": "package.json",
       "source_location": "L32"
-    },
-    {
-      "id": "ref_react_native_reanimated",
-      "label": "react-native-reanimated",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "package.json",
-      "file_type": "concept",
-      "norm_label": "react-native-reanimated",
-      "source_file": "package.json",
-      "source_location": "L33"
     },
     {
       "id": "ref_react_native_screens",
@@ -3104,7 +3142,7 @@
       "file_type": "code",
       "norm_label": "styles",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L94"
+      "source_location": "L108"
     },
     {
       "id": "src_app_auth_modal_terms",
@@ -3173,6 +3211,28 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_auth_signup_index_expired_alert",
+      "label": "EXPIRED_ALERT",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "expired_alert",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L40"
+    },
+    {
+      "id": "src_app_auth_signup_index_retry_alert",
+      "label": "RETRY_ALERT",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "retry_alert",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L39"
+    },
+    {
       "id": "src_app_auth_signup_index_steps",
       "label": "STEPS",
       "_origin": "ast",
@@ -3215,6 +3275,28 @@
       "norm_label": "(tabs)/_layout.tsx",
       "source_file": "src/app/(tabs)/_layout.tsx",
       "source_location": "L1"
+    },
+    {
+      "id": "src_components_alertmodal",
+      "label": "AlertModal.tsx",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "alertmodal.tsx",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_alertmodal_styles",
+      "label": "styles",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "code",
+      "norm_label": "styles",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L58"
     },
     {
       "id": "src_components_auth_authform",
@@ -3380,6 +3462,17 @@
       "norm_label": "react-native",
       "source_file": "package.json",
       "source_location": "L31"
+    },
+    {
+      "id": "ref_react_native_reanimated",
+      "label": "react-native-reanimated",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "signup/index.tsx",
+      "file_type": "concept",
+      "norm_label": "react-native-reanimated",
+      "source_file": "package.json",
+      "source_location": "L33"
     },
     {
       "id": "ref_react_native_safe_area_context",
@@ -4281,11 +4374,154 @@
       "source_location": "L11"
     },
     {
+      "id": "src_graphql_mutations",
+      "label": "graphql/mutations.ts",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "graphql/mutations.ts",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_graphql_mutations_login",
+      "label": "login",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "login",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_graphql_mutations_refreshsession",
+      "label": "refreshSession",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "refreshsession",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L22"
+    },
+    {
+      "id": "src_graphql_mutations_sendsignupotp",
+      "label": "sendSignupOtp",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "sendsignupotp",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L41"
+    },
+    {
+      "id": "src_graphql_mutations_signup",
+      "label": "signUp",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "signup",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L61"
+    },
+    {
+      "id": "src_graphql_mutations_verifysignupotp",
+      "label": "verifySignupOtp",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "verifysignupotp",
+      "source_file": "src/graphql/mutations.ts",
+      "source_location": "L51"
+    },
+    {
+      "id": "src_graphql_queries",
+      "label": "graphql/queries.ts",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "graphql/queries.ts",
+      "source_file": "src/graphql/queries.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_graphql_queries_healthcheck",
+      "label": "healthCheck",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "healthcheck",
+      "source_file": "src/graphql/queries.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_service_api",
+      "label": "api.ts",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "api.ts",
+      "source_file": "src/service/api.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_service_api_instance",
+      "label": "instance",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "instance",
+      "source_file": "src/service/api.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "src_service_client",
+      "label": "client.ts",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "client.ts",
+      "source_file": "src/service/client.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_service_client_axios",
+      "label": "axios",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "axios",
+      "source_file": "src/service/client.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_service_client_http",
+      "label": "http",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "code",
+      "norm_label": "http",
+      "source_file": "src/service/client.ts",
+      "source_location": "L21"
+    },
+    {
       "id": "src_tanstack_hooks",
       "label": "hooks.ts",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "hooks.ts",
       "source_file": "src/tanstack/hooks.ts",
@@ -4296,18 +4532,40 @@
       "label": "tanstack/mutations.ts",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "code",
       "norm_label": "tanstack/mutations.ts",
       "source_file": "src/tanstack/mutations.ts",
       "source_location": "L1"
     },
     {
+      "id": "ref_axios",
+      "label": "axios",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "concept",
+      "norm_label": "axios",
+      "source_file": "package.json",
+      "source_location": "L11"
+    },
+    {
+      "id": "ref_graphql_typed_document_node_core",
+      "label": "@graphql-typed-document-node/core",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "client.ts",
+      "file_type": "concept",
+      "norm_label": "@graphql-typed-document-node/core",
+      "source_file": "package.json",
+      "source_location": "L43"
+    },
+    {
       "id": "claude_skills_graphify_skill_step_2_detect_files",
       "label": "Step 2 - Detect files",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "step 2 - detect files",
@@ -4319,7 +4577,7 @@
       "label": "2026-10-10-auth-api-design.md",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "2026-10-10-auth-api-design.md",
@@ -4331,7 +4589,7 @@
       "label": "Auth API \uc5f0\ub3d9 \uc124\uacc4",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "auth api \u110b\u1167\u11ab\u1103\u1169\u11bc \u1109\u1165\u11af\u1100\u1168",
@@ -4343,7 +4601,7 @@
       "label": "\uac80\uc99d",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1100\u1165\u11b7\u110c\u1173\u11bc",
@@ -4355,7 +4613,7 @@
       "label": "\uad6c\uc870",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1100\u116e\u110c\u1169",
@@ -4367,7 +4625,7 @@
       "label": "\ub85c\uadf8\uc778",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1105\u1169\u1100\u1173\u110b\u1175\u11ab",
@@ -4379,7 +4637,7 @@
       "label": "\ubaa9\ud45c",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1106\u1169\u11a8\u1111\u116d",
@@ -4391,7 +4649,7 @@
       "label": "\ubc94\uc704 \ubc16",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1107\u1165\u11b7\u110b\u1171 \u1107\u1161\u11a9",
@@ -4403,7 +4661,7 @@
       "label": "\uc5d0\ub7ec \ucc98\ub9ac",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u110b\u1166\u1105\u1165 \u110e\u1165\u1105\u1175",
@@ -4415,7 +4673,7 @@
       "label": "\uc751\ub2f5 \uac12 \ubcf4\uad00",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u110b\u1173\u11bc\u1103\u1161\u11b8 \u1100\u1161\u11b9 \u1107\u1169\u1100\u116a\u11ab",
@@ -4427,7 +4685,7 @@
       "label": "\ud68c\uc6d0\uac00\uc785",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1112\u116c\u110b\u116f\u11ab\u1100\u1161\u110b\u1175\u11b8",
@@ -4439,7 +4697,7 @@
       "label": "\ud750\ub984",
       "_origin": "ast",
       "community": 34,
-      "community_name": "hooks.ts",
+      "community_name": "client.ts",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "\u1112\u1173\u1105\u1173\u11b7",
@@ -4469,110 +4727,11 @@
       "source_location": "L1"
     },
     {
-      "id": "src_graphql_mutations",
-      "label": "graphql/mutations.ts",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "graphql/mutations.ts",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_graphql_mutations_login",
-      "label": "login",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "login",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_graphql_mutations_sendsignupotp",
-      "label": "sendSignupOtp",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "sendsignupotp",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L41"
-    },
-    {
-      "id": "src_graphql_mutations_signup",
-      "label": "signUp",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "signup",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L61"
-    },
-    {
-      "id": "src_graphql_mutations_verifysignupotp",
-      "label": "verifySignupOtp",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "verifysignupotp",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L51"
-    },
-    {
-      "id": "src_graphql_queries",
-      "label": "graphql/queries.ts",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "graphql/queries.ts",
-      "source_file": "src/graphql/queries.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_graphql_queries_healthcheck",
-      "label": "healthCheck",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "healthcheck",
-      "source_file": "src/graphql/queries.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_service_api",
-      "label": "api.ts",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "api.ts",
-      "source_file": "src/service/api.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_service_api_instance",
-      "label": "instance",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "instance",
-      "source_file": "src/service/api.ts",
-      "source_location": "L40"
-    },
-    {
       "id": "src_app_index",
       "label": "app/index.tsx",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "app/index.tsx",
       "source_file": "src/app/index.tsx",
@@ -4583,7 +4742,7 @@
       "label": "app/_layout.tsx",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "app/_layout.tsx",
       "source_file": "src/app/_layout.tsx",
@@ -4594,62 +4753,18 @@
       "label": "queryClient",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "queryclient",
       "source_file": "src/app/_layout.tsx",
       "source_location": "L12"
     },
     {
-      "id": "src_graphql_mutations_refreshsession",
-      "label": "refreshSession",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "refreshsession",
-      "source_file": "src/graphql/mutations.ts",
-      "source_location": "L22"
-    },
-    {
-      "id": "src_service_client",
-      "label": "client.ts",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "client.ts",
-      "source_file": "src/service/client.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_service_client_axios",
-      "label": "axios",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "axios",
-      "source_file": "src/service/client.ts",
-      "source_location": "L14"
-    },
-    {
-      "id": "src_service_client_http",
-      "label": "http",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "code",
-      "norm_label": "http",
-      "source_file": "src/service/client.ts",
-      "source_location": "L21"
-    },
-    {
       "id": "src_stores_auth",
       "label": "auth.ts",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "auth.ts",
       "source_file": "src/stores/auth.ts",
@@ -4660,7 +4775,7 @@
       "label": "useAuthStore",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "useauthstore",
       "source_file": "src/stores/auth.ts",
@@ -4671,7 +4786,7 @@
       "label": "index.ts",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "index.ts",
       "source_file": "src/theme/index.ts",
@@ -4682,7 +4797,7 @@
       "label": "bold",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "bold",
       "source_file": "src/theme/index.ts",
@@ -4693,29 +4808,18 @@
       "label": "theme",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "code",
       "norm_label": "theme",
       "source_file": "src/theme/index.ts",
       "source_location": "L6"
     },
     {
-      "id": "ref_axios",
-      "label": "axios",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "concept",
-      "norm_label": "axios",
-      "source_file": "package.json",
-      "source_location": "L11"
-    },
-    {
       "id": "ref_expo_secure_store",
       "label": "expo-secure-store",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "concept",
       "norm_label": "expo-secure-store",
       "source_file": "package.json",
@@ -4726,29 +4830,18 @@
       "label": "expo-splash-screen",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "concept",
       "norm_label": "expo-splash-screen",
       "source_file": "package.json",
       "source_location": "L23"
     },
     {
-      "id": "ref_graphql_typed_document_node_core",
-      "label": "@graphql-typed-document-node/core",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "client.ts",
-      "file_type": "concept",
-      "norm_label": "@graphql-typed-document-node/core",
-      "source_file": "package.json",
-      "source_location": "L43"
-    },
-    {
       "id": "ref_tanstack_react_query",
       "label": "@tanstack/react-query",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "concept",
       "norm_label": "@tanstack/react-query",
       "source_file": "package.json",
@@ -4759,7 +4852,7 @@
       "label": "zustand",
       "_origin": "ast",
       "community": 5,
-      "community_name": "client.ts",
+      "community_name": "auth.ts",
       "file_type": "concept",
       "norm_label": "zustand",
       "source_file": "package.json",
@@ -5277,8 +5370,8 @@
       "id": "src_graphql_generated_index",
       "label": "src_graphql_generated_index",
       "_origin": "semantic",
-      "community": 4,
-      "community_name": "api.ts",
+      "community": 34,
+      "community_name": "client.ts",
       "external": true,
       "file_type": "concept",
       "norm_label": "src_graphql_generated_index",
@@ -5289,8 +5382,8 @@
       "id": "src_graphql_generated_index_graphql",
       "label": "src_graphql_generated_index_graphql",
       "_origin": "semantic",
-      "community": 4,
-      "community_name": "api.ts",
+      "community": 34,
+      "community_name": "client.ts",
       "external": true,
       "file_type": "concept",
       "norm_label": "src_graphql_generated_index_graphql",
@@ -5308,7 +5401,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -5320,7 +5413,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5332,7 +5425,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L54",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -5344,7 +5437,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5356,7 +5449,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L138",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -5368,7 +5461,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L180",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -5380,7 +5473,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L195",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
@@ -5392,7 +5485,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L196",
+      "source_location": "L209",
       "weight": 1.0
     },
     {
@@ -5404,7 +5497,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -5416,7 +5509,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -5428,7 +5521,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L52",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -5440,7 +5533,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L68",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -5452,19 +5545,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen_handlesendotperror",
-      "target": "src_app_auth_signup_index_alertretrylater",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L74",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -5476,7 +5557,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L74",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen_handlesendotperror",
+      "target": "src_app_auth_signup_index_signupscreen_openalert",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -5488,19 +5581,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L116",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
       "source": "src_app_auth_signup_index_signupscreen_handlesignuperror",
-      "target": "src_app_auth_signup_index_alertretrylater",
+      "target": "src_app_auth_signup_index_signupscreen_openalert",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L125",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -5512,19 +5605,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L138",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen_handleverifyotperror",
-      "target": "src_app_auth_signup_index_alertretrylater",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L98",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -5536,7 +5617,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L98",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen_handleverifyotperror",
+      "target": "src_app_auth_signup_index_signupscreen_openalert",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L108",
       "weight": 1.0
     },
     {
@@ -6537,7 +6630,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_theme_color_instance",
+      "target": "src_tanstack_hooks_uselogin",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6549,7 +6642,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_utils_phone_formatphone",
+      "target": "src_theme_color_instance",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6561,6 +6654,18 @@
     },
     {
       "source": "src_app_auth_login_index",
+      "target": "src_utils_phone_formatphone",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/(auth)/login/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_login_index",
       "target": "src_utils_phone_isvalidphone",
       "relation": "imports",
       "_origin": "ast",
@@ -6568,7 +6673,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -6585,7 +6690,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_components_auth_textfield_textfield",
+      "target": "src_components_alertmodal_alertmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6597,7 +6702,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_service_client_graphqlerror",
+      "target": "src_components_auth_textfield_textfield",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6609,7 +6714,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_tanstack_hooks_uselogin",
+      "target": "src_service_client_graphqlerror",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6736,7 +6841,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -6748,7 +6853,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -6760,7 +6865,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -6772,12 +6877,24 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
       "source": "src_app_auth_signup_index",
       "target": "src_components_auth_textfield_textfield",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index",
+      "target": "src_components_alertmodal_alertmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6856,6 +6973,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/_layout.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "src_theme_color_instance",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
       "source_location": "L7",
       "weight": 1.0
     },
@@ -7246,7 +7375,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_theme_color",
+      "target": "src_tanstack_hooks",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7258,7 +7387,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_utils_phone",
+      "target": "src_theme_color",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7266,6 +7395,18 @@
       "context": "import",
       "source_file": "src/app/(auth)/login/index.tsx",
       "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_login_index",
+      "target": "src_utils_phone",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/(auth)/login/index.tsx",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -7318,7 +7459,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_components_auth_textfield",
+      "target": "src_components_alertmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7330,7 +7471,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_service_client",
+      "target": "src_components_auth_textfield",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7342,7 +7483,7 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_tanstack_hooks",
+      "target": "src_service_client",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7558,18 +7699,6 @@
     },
     {
       "source": "src_app_auth_signup_index",
-      "target": "ref_react_native",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index",
       "target": "src_components_auth_authform",
       "relation": "imports_from",
       "_origin": "ast",
@@ -7577,7 +7706,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -7589,7 +7718,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -7601,12 +7730,24 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
       "source": "src_app_auth_signup_index",
       "target": "src_components_auth_textfield",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index",
+      "target": "src_components_alertmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7830,6 +7971,78 @@
       "context": "import",
       "source_file": "src/app/(tabs)/_layout.tsx",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "ref_rneui_themed",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "ref_react",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "ref_react_native",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "ref_react_native_reanimated",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "ref_react_native_screens",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "src_theme_color",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -10886,24 +11099,24 @@
     },
     {
       "source": "src_app_auth_login_index",
-      "target": "src_app_auth_login_index_loginscreen",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L13",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_login_index",
       "target": "src_app_auth_login_index_styles",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L94",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_login_index",
+      "target": "src_app_auth_login_index_loginscreen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/login/index.tsx",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -10914,7 +11127,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L21",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -10925,7 +11138,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L26",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -10936,7 +11149,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L31",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -10947,7 +11160,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L35",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_login_index_loginscreen",
+      "target": "src_app_auth_login_index_loginscreen_handleclosealert",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/login/index.tsx",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -10958,7 +11182,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L45",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -11095,7 +11319,7 @@
     },
     {
       "source": "src_app_auth_signup_index",
-      "target": "src_app_auth_signup_index_alertretrylater",
+      "target": "src_app_auth_signup_index_retry_alert",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11106,101 +11330,24 @@
     },
     {
       "source": "src_app_auth_signup_index",
+      "target": "src_app_auth_signup_index_expired_alert",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index",
       "target": "src_app_auth_signup_index_signupscreen",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L43",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlechangecode",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L101",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlesignupsuccess",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L111",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlesignuperror",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L115",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlestart",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L137",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlechangephone",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L67",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlesendotperror",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L73",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handlesendotpsuccess",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L77",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_auth_signup_index_signupscreen",
-      "target": "src_app_auth_signup_index_signupscreen_handleresendcode",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L86",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -11211,7 +11358,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L93",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -11222,7 +11369,117 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L97",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlechangecode",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlesignupsuccess",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L121",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlesignuperror",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlestart",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L147",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_openalert",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handleclosealert",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlechangephone",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlesendotperror",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handlesendotpsuccess",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_auth_signup_index_signupscreen",
+      "target": "src_app_auth_signup_index_signupscreen_handleresendcode",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/(auth)/signup/index.tsx",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -11333,6 +11590,39 @@
       "confidence_score": 1.0,
       "source_file": "src/app/(tabs)/_layout.tsx",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "src_components_alertmodal_alertmodal",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "src_components_alertmodal_styles",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_alertmodal",
+      "target": "src_components_alertmodal_props",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/AlertModal.tsx",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -12213,7 +12503,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L61",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -12225,7 +12515,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L56",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -12237,7 +12527,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/login/index.tsx",
-      "source_location": "L42",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -12249,7 +12539,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L155",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -12261,7 +12551,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L182",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
@@ -12273,7 +12563,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L242",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
@@ -12285,7 +12575,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L107",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -12297,7 +12587,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L107",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -12309,7 +12599,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L83",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -12321,7 +12611,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L83",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -12333,7 +12623,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L90",
+      "source_location": "L100",
       "weight": 1.0
     },
     {
@@ -12345,7 +12635,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L132",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -12357,7 +12647,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "src/app/(auth)/signup/index.tsx",
-      "source_location": "L132",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -12518,5 +12808,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8e78cf476d9fa3733ddf819e82cf38d02cd3a064"
+  "built_at_commit": "7da7d04b267320d0da1bc09564987f002e63c4f2"
 }
