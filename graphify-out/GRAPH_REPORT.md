@@ -1,17 +1,17 @@
 # Graph Report - prepick-rn  (2026-10-10)
 
 ## Corpus Check
-- 47 files · ~67,631 words
+- 51 files · ~69,339 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 14 file(s) not represented in the graph (top: .otf 9, (none) 3, .graphify-bak 1)
+- Unclassified: 15 file(s) not represented in the graph (top: .otf 9, (none) 4, .graphify-bak 1)
 
 ## Summary
-- 379 nodes · 481 edges · 34 communities (28 shown, 6 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
+- 456 nodes · 631 edges · 39 communities (31 shown, 8 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.9)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `31bbfdba`
+- Built from commit: `8e78cf47`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,8 +20,8 @@
 - dependencies
 - expo
 - What You Must Do When Invoked
+- api.ts
 - client.ts
-- auth.ts
 - smart-order-consumer-app-PRD.md
 - devDependencies
 - graphify reference: extra exports and benchmark
@@ -39,7 +39,7 @@
 - .claude/CLAUDE.md
 - extraction-spec.md
 - 2.1 포함 기능
-- AuthScreen.tsx
+- signup/index.tsx
 - 4.2 회원가입 화면
 - 4.3 홈
 - 5. 주요 사용자 흐름
@@ -50,75 +50,78 @@
 - 4.11 주문내역
 - 4.7 메뉴 상세
 - home.tsx
+- hooks.ts
+- SignupScreen
+- TermsBottomSheet
 
 ## God Nodes (most connected - your core abstractions)
-1. `expo-router` - 14 edges
+1. `SignupScreen()` - 23 edges
 2. `expo` - 13 edges
 3. `What You Must Do When Invoked` - 12 edges
-4. `@rneui/themed` - 10 edges
-5. `react` - 10 edges
-6. `instance` - 10 edges
-7. `/graphify` - 10 edges
-8. `react-native` - 9 edges
-9. `scripts` - 8 edges
-10. `graphify reference: extra exports and benchmark` - 8 edges
+4. `@rneui/themed` - 11 edges
+5. `expo-router` - 11 edges
+6. `react-native` - 11 edges
+7. `setTokens()` - 11 edges
+8. `instance` - 11 edges
+9. `LoginScreen()` - 10 edges
+10. `requestGraphQL()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `RootLayout()` --calls--> `useIsLoggedIn()`  [EXTRACTED]
-  src/app/_layout.tsx → src/stores/auth.ts
-- `Login()` --calls--> `formatPhone()`  [EXTRACTED]
-  src/app/(auth)/login.tsx → src/utils/phone.ts
-- `Login()` --calls--> `isValidPhone()`  [EXTRACTED]
-  src/app/(auth)/login.tsx → src/utils/phone.ts
-- `SignupPhone()` --calls--> `formatPhone()`  [EXTRACTED]
-  src/app/(auth)/signup/phone.tsx → src/utils/phone.ts
-- `SignupPhone()` --calls--> `isValidPhone()`  [EXTRACTED]
-  src/app/(auth)/signup/phone.tsx → src/utils/phone.ts
+- `구조` --references--> `GraphQLError`  [INFERRED]
+  docs/spec/2026-10-10-auth-api-design.md → src/service/client.ts
+- `로그인` --references--> `setTokens()`  [INFERRED]
+  docs/spec/2026-10-10-auth-api-design.md → src/stores/auth.ts
+- `회원가입` --references--> `setTokens()`  [INFERRED]
+  docs/spec/2026-10-10-auth-api-design.md → src/stores/auth.ts
+- `구조` --references--> `setTokens()`  [INFERRED]
+  docs/spec/2026-10-10-auth-api-design.md → src/stores/auth.ts
+- `구조` --references--> `useLogin()`  [INFERRED]
+  docs/spec/2026-10-10-auth-api-design.md → src/tanstack/hooks.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (34 total, 6 thin omitted)
+## Communities (39 total, 8 thin omitted)
 
 ### Community 0 - "package.json"
 Cohesion: 0.05
-Nodes (37): config, { defineConfig }, expoConfig, main, name, private, version, date-fns (+29 more)
+Nodes (39): config, { defineConfig }, expoConfig, main, name, private, version, date-fns (+31 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.06
-Nodes (33): dependencies, axios, date-fns, expo, expo-constants, expo-device, expo-font, expo-glass-effect (+25 more)
+Nodes (34): dependencies, axios, date-fns, expo, expo-constants, expo-dev-client, expo-device, expo-font (+26 more)
 
 ### Community 2 - "expo"
 Cohesion: 0.08
-Nodes (24): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, predictiveBackGestureEnabled, reactCompiler, typedRoutes (+16 more)
+Nodes (25): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, reactCompiler (+17 more)
 
 ### Community 3 - "What You Must Do When Invoked"
 Cohesion: 0.08
-Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
+Nodes (23): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+15 more)
 
-### Community 4 - "client.ts"
-Cohesion: 0.11
-Nodes (23): axios, @graphql-typed-document-node/core, src_graphql_generated_index, src_graphql_generated_index_graphql, login, refreshSession, healthCheck, API (+15 more)
+### Community 4 - "api.ts"
+Cohesion: 0.31
+Nodes (8): src_graphql_generated_index, src_graphql_generated_index_graphql, login, sendSignupOtp, signUp, verifySignupOtp, healthCheck, instance
 
-### Community 5 - "auth.ts"
-Cohesion: 0.18
-Nodes (15): expo-secure-store, expo-splash-screen, @tanstack/react-query, zustand, Index(), queryClient, RootLayout(), AuthState (+7 more)
+### Community 5 - "client.ts"
+Cohesion: 0.09
+Nodes (30): axios, expo-secure-store, expo-splash-screen, @graphql-typed-document-node/core, @tanstack/react-query, zustand, IndexScreen(), queryClient (+22 more)
 
 ### Community 6 - "smart-order-consumer-app-PRD.md"
 Cohesion: 0.13
 Nodes (14): 10. 향후 확장 가능 기능, 3. 전체 화면 구조, 4.10 주문 완료, 4.12 주문 상세, 4.13 더보기, 4.4 매장 카드, 4.5 검색 화면, 4.9 주문서 (+6 more)
 
 ### Community 7 - "devDependencies"
-Cohesion: 0.20
-Nodes (10): devDependencies, eslint, eslint-config-expo, graphql, @graphql-codegen/cli, @graphql-codegen/client-preset, @graphql-typed-document-node/core, @types/lodash (+2 more)
+Cohesion: 0.18
+Nodes (11): devDependencies, eslint, eslint-config-expo, graphql, @graphql-codegen/cli, @graphql-codegen/client-preset, @graphql-typed-document-node/core, prettier (+3 more)
 
 ### Community 8 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 9 - "scripts"
-Cohesion: 0.25
-Nodes (8): scripts, android, codegen, ios, lint, reset-project, start, web
+Cohesion: 0.22
+Nodes (9): scripts, android, codegen, format, ios, lint, reset-project, start (+1 more)
 
 ### Community 10 - "tsconfig.json"
 Cohesion: 0.25
@@ -148,13 +151,17 @@ Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify refer
 Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
+### Community 17 - "CLAUDE.md"
+Cohesion: 0.50
+Nodes (3): graphify, 코드 작성 시 유의사항 (중요), 테스트 파일 작성 시 유의사항 (중요)
+
 ### Community 22 - "2.1 포함 기능"
 Cohesion: 0.14
 Nodes (14): 1.1 제품 목표, 1.2 프로젝트 목적, 1.3 핵심 서비스 정책, 1. 제품 개요, 2.1 포함 기능, 2.2 제외 기능, 2. 제품 범위, Smart Order Consumer App PRD (+6 more)
 
-### Community 23 - "AuthScreen.tsx"
-Cohesion: 0.09
-Nodes (31): expo-router, react, react-native, react-native-safe-area-context, @rneui/themed, Login(), styles, styles (+23 more)
+### Community 23 - "signup/index.tsx"
+Cohesion: 0.07
+Nodes (34): expo-router, react, react-native, react-native-safe-area-context, @rneui/themed, styles, styles, TermsDetailModal() (+26 more)
 
 ### Community 24 - "4.2 회원가입 화면"
 Cohesion: 0.20
@@ -192,25 +199,33 @@ Nodes (3): 4.11 주문내역, 지난 주문 예시, 진행 중 주문 예시
 Cohesion: 0.67
 Nodes (3): 4.7 메뉴 상세, UI 예시, 주요 기능
 
+### Community 34 - "hooks.ts"
+Cohesion: 0.11
+Nodes (24): Step 2 - Detect files, Auth API 연동 설계, 검증, 구조, 로그인, 목표, 범위 밖, 에러 처리 (+16 more)
+
+### Community 35 - "SignupScreen"
+Cohesion: 0.13
+Nodes (20): LoginScreen(), handleChangePhone(), handleLogin(), handleLoginError(), alertRetryLater(), getErrorCode(), getOtpRequestErrorMessage(), SignupScreen() (+12 more)
+
 ## Knowledge Gaps
-- **232 isolated node(s):** `name`, `slug`, `version`, `orientation`, `icon` (+227 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 256 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **246 isolated node(s):** `name`, `slug`, `version`, `orientation`, `icon` (+241 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 284 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.079) - this node is a cross-community bridge._
-- **Why does `expo-router` connect `AuthScreen.tsx` to `package.json`, `auth.ts`?**
-  _High betweenness centrality (0.040) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+  _High betweenness centrality (0.087) - this node is a cross-community bridge._
+- **Why does `GraphQLError` connect `client.ts` to `hooks.ts`, `signup/index.tsx`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `Step 2 - Detect files` connect `hooks.ts` to `What You Must Do When Invoked`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Are the 4 inferred relationships involving `SignupScreen()` (e.g. with `handleRequestCode()` and `handleSignup()`) actually correct?**
+  _`SignupScreen()` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `slug`, `version` to the rest of the system?**
-  _232 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _246 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
-- **Should `expo` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._

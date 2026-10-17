@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Colors from '@/theme/color';
 
-// SignUpInput에 동의 필드가 없어 현재는 UI만 존재
+// TODO: 약관동의 API 연동 (SignUpInput에 동의 필드가 없어 현재는 UI만 존재)
 const TERMS = [
   { title: '서비스 이용약관', hasDetail: true },
   { title: '개인정보 수집 및 이용', hasDetail: true },

@@ -13,7 +13,7 @@ type Props = {
   subtitle?: string;
   // 회원가입 진행 단계 (1부터 시작)
   step?: number;
-  button?: { title: string; onPress: () => void; isDisabled?: boolean };
+  button?: { title: string; onPress: () => void; isDisabled?: boolean; isLoading?: boolean };
   children: ReactNode;
 };
 
@@ -62,6 +62,7 @@ export default function AuthForm({ title, subtitle, step, button, children }: Pr
             title={button.title}
             onPress={button.onPress}
             disabled={button.isDisabled}
+            loading={button.isLoading}
             {...(isKeyboardVisible && { radius: 0 })}
             containerStyle={!isKeyboardVisible && styles.buttonFloating}
           />

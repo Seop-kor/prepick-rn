@@ -5,9 +5,6 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import Colors from '@/theme/color';
 
 export const CODE_LENGTH = 6;
-// TODO: API 연동 시 OtpRequestPayload.expiresAt, retryAfterSeconds로 교체
-const EXPIRES_IN_MS = 3 * 60 * 1000;
-const RETRY_AFTER_MS = 30 * 1000;
 
 const toClock = (ms: number) => {
   const s = Math.ceil(Math.max(0, ms) / 1000);
@@ -17,11 +14,14 @@ const toClock = (ms: number) => {
 type Props = {
   code: string;
   onChangeCode: (code: string) => void;
-  sentAt: number;
+  // 재전송 중이거나 실패하면 undefined → 타이머를 숨기고 입력은 허용
+  expiresAt?: number;
+  retryAt?: number;
+  error?: string;
   onResend: () => void;
 };
 
-export default function OtpInput({ code, onChangeCode, sentAt, onResend }: Props) {
+export default function OtpInput({ code, onChangeCode, expiresAt, retryAt, error, onResend }: Props) {
   const [isFocused, setIsFocused] = useState(true);
   const [now, setNow] = useState(Date.now);
 
@@ -31,9 +31,9 @@ export default function OtpInput({ code, onChangeCode, sentAt, onResend }: Props
     return () => clearInterval(id);
   }, []);
 
-  const expiresIn = sentAt + EXPIRES_IN_MS - now;
-  const retryIn = sentAt + RETRY_AFTER_MS - now;
-  const isExpired = expiresIn <= 0;
+  const expiresIn = expiresAt === undefined ? undefined : expiresAt - now;
+  const retryIn = retryAt === undefined ? 0 : retryAt - now;
+  const isExpired = expiresIn !== undefined && expiresIn <= 0;
 
   function handleChangeText(value: string) {
     onChangeCode(value.replace(/\D/g, '').slice(0, CODE_LENGTH));
@@ -79,7 +79,7 @@ export default function OtpInput({ code, onChangeCode, sentAt, onResend }: Props
         {isExpired ? (
           <Text style={styles.error}>인증 시간이 지났어요.</Text>
         ) : (
-          <Text style={styles.timer}>{toClock(expiresIn)}</Text>
+          <Text style={styles.timer}>{expiresIn !== undefined && toClock(expiresIn)}</Text>
         )}
         {retryIn > 0 && !isExpired ? (
           <Text style={styles.muted}>{toClock(retryIn)} 후 다시 받기</Text>
@@ -89,6 +89,7 @@ export default function OtpInput({ code, onChangeCode, sentAt, onResend }: Props
           </Text>
         )}
       </View>
+      {!!error && <Text style={[styles.error, styles.errorLine]}>{error}</Text>}
     </View>
   );
 }
@@ -130,5 +131,6 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums']
   },
   error: { fontSize: 14, color: Colors.red },
+  errorLine: { marginTop: 8 },
   link: { fontFamily: 'Pretendard-Bold', fontSize: 14, textDecorationLine: 'underline' }
 });

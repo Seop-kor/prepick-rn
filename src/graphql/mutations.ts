@@ -37,3 +37,42 @@ export const refreshSession = graphql(`
     }
   }
 `);
+
+export const sendSignupOtp = graphql(`
+  mutation sendSignupOtp($phone: String!) {
+    sendSignupOtp(phone: $phone) {
+      expiresAt
+      retryAfterSeconds
+      __typename
+    }
+  }
+`);
+
+export const verifySignupOtp = graphql(`
+  mutation verifySignupOtp($phone: String!, $code: String!) {
+    verifySignupOtp(phone: $phone, code: $code) {
+      expiresAt
+      verificationToken
+      __typename
+    }
+  }
+`);
+
+export const signUp = graphql(`
+  mutation signUp($input: SignUpInput!) {
+    signUp(input: $input) {
+      accessToken
+      accessTokenExpiresAt
+      refreshToken
+      refreshTokenExpiresAt
+      user {
+        id
+        name
+        phone
+        createdAt
+        __typename
+      }
+      __typename
+    }
+  }
+`);

@@ -38,6 +38,10 @@ export class GraphQLError extends Error {
   constructor(public errors: NonNullable<GraphQLResponse<unknown>['errors']>) {
     super(errors[0].message);
   }
+
+  get code() {
+    return this.errors[0].extensions?.code;
+  }
 }
 
 async function postGraphQL<TData, TVariables>(

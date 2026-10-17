@@ -1,11 +1,15 @@
-import { router, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { usePreventRemove } from 'expo-router/react-navigation';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 import AuthForm from '@/components/(auth)/AuthForm';
 import OtpInput, { CODE_LENGTH } from '@/components/(auth)/signup/OtpInput';
 import SignupDone from '@/components/(auth)/signup/SignupDone';
 import TextField from '@/components/(auth)/TextField';
+import { GraphQLError } from '@/service/client';
+import { setTokens } from '@/stores/auth';
+import { useSendSignupOtp, useSignUp, useVerifySignupOtp } from '@/tanstack/hooks';
 import { formatPhone, isValidPhone } from '@/utils/phone';
 
 const STEPS = ['name', 'phone', 'otp', 'password', 'done'] as const;
@@ -14,15 +18,38 @@ type Step = (typeof STEPS)[number];
 // 서버 규칙: 최소 8자(코드포인트), 최대 72바이트(UTF-8, bcrypt 상한)
 const MIN_PASSWORD_LENGTH = 8;
 const MAX_PASSWORD_BYTES = 72;
+const MAX_NAME_LENGTH = 50;
+
+const ALREADY_REGISTERED_MESSAGE = '이미 가입된 번호예요.';
+
+function getErrorCode(error: Error | null) {
+  return error instanceof GraphQLError ? error.code : undefined;
+}
+
+function getOtpRequestErrorMessage(error: Error | null) {
+  if (!(error instanceof GraphQLError)) return undefined;
+  if (error.code === 'PHONE_NUMBER_ALREADY_REGISTERED') return ALREADY_REGISTERED_MESSAGE;
+  if (error.code !== 'TOO_MANY_REQUESTS') return undefined;
+  const retryAfterSeconds = error.errors[0].extensions?.retryAfterSeconds;
+  return retryAfterSeconds
+    ? `${retryAfterSeconds}초 후에 다시 요청해주세요.`
+    : '요청 횟수를 초과했어요. 잠시 후 다시 시도해주세요.';
+}
+
+function alertRetryLater() {
+  Alert.alert('잠시 후 다시 시도해주세요.');
+}
 
 export default function SignupScreen() {
   const [step, setStep] = useState<Step>('name');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
-  const [sentAt, setSentAt] = useState(0);
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  const sendOtp = useSendSignupOtp();
+  const verifyOtp = useVerifySignupOtp();
+  const signUp = useSignUp();
 
   const stepIndex = STEPS.indexOf(step);
 
@@ -39,33 +66,76 @@ export default function SignupScreen() {
 
   function handleChangePhone(value: string) {
     setPhone(formatPhone(value));
+    sendOtp.reset();
+    signUp.reset();
   }
 
-  function handleResendCode() {
-    // TODO: sendSignupOtp 연동, 중복 번호면 "이미 가입된 번호예요." 표시
+  function handleSendOtpError(e: Error) {
+    if (!getOtpRequestErrorMessage(e)) alertRetryLater();
+  }
+
+  function handleSendOtpSuccess() {
     setCode('');
-    setSentAt(Date.now());
+    setStep('otp');
   }
 
   function handleRequestCode() {
-    handleResendCode();
-    setStep('otp');
+    sendOtp.mutate({ phone }, { onSuccess: handleSendOtpSuccess, onError: handleSendOtpError });
+  }
+
+  function handleResendCode() {
+    if (sendOtp.isPending) return;
+    setCode('');
+    verifyOtp.reset();
+    sendOtp.mutate({ phone }, { onError: handleSendOtpError });
+  }
+
+  function handleVerifyOtpSuccess() {
+    setStep('password');
+  }
+
+  function handleVerifyOtpError(e: Error) {
+    if (getErrorCode(e) !== 'BAD_USER_INPUT') alertRetryLater();
   }
 
   function handleChangeCode(next: string) {
     setCode(next);
-    // TODO: verifySignupOtp 연동, verificationToken 보관
-    if (next.length === CODE_LENGTH) setStep('password');
+    verifyOtp.reset();
+    if (next.length !== CODE_LENGTH) return;
+    verifyOtp.mutate(
+      { phone, code: next },
+      { onSuccess: handleVerifyOtpSuccess, onError: handleVerifyOtpError }
+    );
   }
 
-  function handleSignup() {
-    // TODO: signUp 연동 (name, password, verificationToken)
+  function handleSignupSuccess() {
     setStep('done');
   }
 
+  function handleSignupError(e: Error) {
+    if (getErrorCode(e) === 'PHONE_NUMBER_ALREADY_REGISTERED') {
+      setStep('phone');
+      return;
+    }
+    if (e.message === 'Invalid verification token') {
+      Alert.alert('인증이 만료됐어요. 다시 인증해주세요.');
+      setStep('phone');
+      return;
+    }
+    alertRetryLater();
+  }
+
+  function handleSignup() {
+    if (!verifyOtp.data) return;
+    signUp.mutate(
+      { name: name.trim(), password, verificationToken: verifyOtp.data.verificationToken },
+      { onSuccess: handleSignupSuccess, onError: handleSignupError }
+    );
+  }
+
+  // signUp 직후 저장하면 로그인 가드가 바로 바뀌어 완료 화면이 뜨기 전에 auth 스택이 사라짐
   function handleStart() {
-    // TODO: signUp 토큰 저장 → 로그인 가드가 홈으로 이동
-    router.dismissAll();
+    if (signUp.data) setTokens(signUp.data);
   }
 
   if (step === 'done') {
@@ -90,6 +160,7 @@ export default function SignupScreen() {
           placeholder="홍길동"
           value={name}
           onChangeText={setName}
+          maxLength={MAX_NAME_LENGTH}
           textContentType="name"
           autoComplete="name"
           autoFocus
@@ -104,7 +175,12 @@ export default function SignupScreen() {
         title="휴대폰 번호를 입력해주세요"
         subtitle="로그인할 때 아이디로 쓰여요."
         step={2}
-        button={{ title: '인증번호 받기', isDisabled: !isValidPhone(phone), onPress: handleRequestCode }}
+        button={{
+          title: '인증번호 받기',
+          isDisabled: !isValidPhone(phone),
+          isLoading: sendOtp.isPending,
+          onPress: handleRequestCode
+        }}
       >
         <TextField
           key="phone"
@@ -115,6 +191,12 @@ export default function SignupScreen() {
           keyboardType="number-pad"
           textContentType="telephoneNumber"
           autoComplete="tel"
+          error={
+            getOtpRequestErrorMessage(sendOtp.error) ??
+            (getErrorCode(signUp.error) === 'PHONE_NUMBER_ALREADY_REGISTERED'
+              ? ALREADY_REGISTERED_MESSAGE
+              : undefined)
+          }
           autoFocus
         />
       </AuthForm>
@@ -122,9 +204,22 @@ export default function SignupScreen() {
   }
 
   if (step === 'otp') {
+    const otp = sendOtp.data;
+    const isInvalidCode = getErrorCode(verifyOtp.error) === 'BAD_USER_INPUT';
     return (
       <AuthForm title={'문자로 받은\n인증번호 6자리를 입력해주세요'} subtitle={phone} step={3}>
-        <OtpInput code={code} onChangeCode={handleChangeCode} sentAt={sentAt} onResend={handleResendCode} />
+        <OtpInput
+          code={code}
+          onChangeCode={handleChangeCode}
+          expiresAt={otp && Date.parse(otp.expiresAt)}
+          retryAt={otp && sendOtp.submittedAt + otp.retryAfterSeconds * 1000}
+          error={
+            isInvalidCode
+              ? '인증번호가 올바르지 않아요. 계속 실패하면 다시 받아주세요.'
+              : getOtpRequestErrorMessage(sendOtp.error)
+          }
+          onResend={handleResendCode}
+        />
       </AuthForm>
     );
   }
@@ -140,7 +235,12 @@ export default function SignupScreen() {
     <AuthForm
       title="비밀번호를 정해주세요"
       step={4}
-      button={{ title: '가입하기', isDisabled: !isValidPassword || !isMatched, onPress: handleSignup }}
+      button={{
+        title: '가입하기',
+        isDisabled: !isValidPassword || !isMatched,
+        isLoading: signUp.isPending,
+        onPress: handleSignup
+      }}
     >
       <TextField
         key="password"
