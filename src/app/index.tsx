@@ -1,12 +1,12 @@
-import { Redirect } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { Redirect } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
 
-import { useIsHydrated, useIsLoggedIn, hydrateAuth } from "@/stores/auth";
+import { useIsHydrated, useIsLoggedIn, hydrateAuth } from '@/stores/auth';
 
-// App entry: run startup work, then route by login state.
-// Also the fallback when a Stack.Protected guard flips (login/logout), so it re-routes from here.
-export default function Index() {
+// 앱 진입점: 초기화 후 로그인 상태에 따라 이동
+// 로그인/로그아웃으로 Stack.Protected 가드가 바뀔 때도 여기서 다시 이동
+export default function IndexScreen() {
   const isHydrated = useIsHydrated();
   const isLoggedIn = useIsLoggedIn();
 
@@ -16,5 +16,5 @@ export default function Index() {
   }, [isHydrated]);
 
   if (!isHydrated) return null;
-  return <Redirect href={isLoggedIn ? "/home" : "/login"} />;
+  return <Redirect href={isLoggedIn ? '/home' : '/welcome'} />;
 }
