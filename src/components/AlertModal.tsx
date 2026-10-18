@@ -10,10 +10,19 @@ type Props = {
   isVisible: boolean;
   title: string;
   message?: string;
+  buttonTitle?: string;
+  isLoading?: boolean;
   onClose: () => void;
 };
 
-export default function AlertModal({ isVisible, title, message, onClose }: Props) {
+export default function AlertModal({
+  isVisible,
+  title,
+  message,
+  buttonTitle = '확인',
+  isLoading,
+  onClose
+}: Props) {
   // 키보드가 모달을 가리지 않도록 내린다
   useEffect(() => {
     if (isVisible) Keyboard.dismiss();
@@ -25,7 +34,7 @@ export default function AlertModal({ isVisible, title, message, onClose }: Props
         <Text style={styles.title}>{title}</Text>
         {!!message && <Text style={styles.message}>{message}</Text>}
       </View>
-      <Button title="확인" onPress={onClose} />
+      <Button title={buttonTitle} loading={isLoading} onPress={onClose} />
     </View>
   );
 
