@@ -1,7 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 
 import { setTokens } from '@/stores/auth';
 import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/tanstack/mutations';
+import { getOrders } from '@/tanstack/queries';
 
 export function useLogin() {
   return useMutation({
@@ -33,5 +34,14 @@ export function useSignUp() {
       password: string;
       verificationToken: string;
     }) => signUp(name, password, verificationToken)
+  });
+}
+
+export function useOrders() {
+  return useInfiniteQuery({
+    queryKey: ['orders'],
+    queryFn: ({ pageParam }) => getOrders(pageParam),
+    initialPageParam: null as string | null,
+    getNextPageParam: (lastPage) => lastPage.nextCursor
   });
 }

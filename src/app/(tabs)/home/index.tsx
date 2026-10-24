@@ -16,12 +16,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import CartBar from '@/components/(tabs)/home/CartBar';
 import HomeSkeleton from '@/components/(tabs)/home/HomeSkeleton';
+import LiveOrderBar from '@/components/(tabs)/home/LiveOrderBar';
 import { MOCK_HOME } from '@/components/(tabs)/home/mock';
 import NewStoreCard from '@/components/(tabs)/home/NewStoreCard';
 import PromotionCarousel from '@/components/(tabs)/home/PromotionCarousel';
 import SectionHeader from '@/components/(tabs)/home/SectionHeader';
 import SectionNotice from '@/components/(tabs)/home/SectionNotice';
 import StoreRow from '@/components/(tabs)/home/StoreRow';
+import { MOCK_ORDERS } from '@/components/(tabs)/orders/mock';
+import { isLiveOrder } from '@/components/(tabs)/orders/status';
 import AlertModal from '@/components/AlertModal';
 import Colors from '@/theme/color';
 
@@ -41,6 +44,8 @@ export default function HomeScreen() {
   // TODO: API 연결 시 쿼리 결과와 expo-location으로 교체
   const { isLoading, isError, isLocationGranted, locationName, user, promotions, stores, newStores, cart } =
     MOCK_HOME;
+  const liveOrders = MOCK_ORDERS.filter(isLiveOrder);
+  const floatingBarCount = Number(!!cart) + Number(liveOrders.length > 0);
 
   function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     setIsCompactHeaderVisible(e.nativeEvent.contentOffset.y > COMPACT_HEADER_OFFSET);
@@ -64,7 +69,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <StatusBar style="dark" />
       <ScrollView
-        contentContainerStyle={{ paddingTop: insets.top, paddingBottom: cart ? 100 : 32 }}
+        contentContainerStyle={{ paddingTop: insets.top, paddingBottom: 32 + floatingBarCount * 72 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
@@ -162,6 +167,7 @@ export default function HomeScreen() {
         </Animated.View>
       )}
 
+      {liveOrders.length > 0 && <LiveOrderBar orders={liveOrders} bottom={cart ? 84 : 12} />}
       {cart && <CartBar store={cart.store} itemCount={cart.itemCount} totalPrice={cart.totalPrice} />}
 
       <AlertModal

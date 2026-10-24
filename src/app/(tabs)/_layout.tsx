@@ -16,9 +16,9 @@ export default function TabsLayout() {
         tabBarLabelStyle: { fontFamily: 'Pretendard-SemiBold', fontSize: 11 }
       }}
     >
-      <Tabs.Screen name="home/index" options={{ title: '홈', tabBarIcon: HomeIcon }} />
-      <Tabs.Screen name="orders/index" options={{ title: '주문내역', tabBarIcon: OrdersIcon }} />
-      <Tabs.Screen name="more/index" options={{ title: '더보기', tabBarIcon: MoreIcon }} />
+      <Tabs.Screen name="home" options={{ title: '홈', tabBarIcon: HomeIcon }} />
+      <Tabs.Screen name="orders" options={{ title: '주문내역', tabBarIcon: OrdersIcon }} />
+      <Tabs.Screen name="more" options={{ title: '더보기', tabBarIcon: MoreIcon }} />
     </Tabs>
   );
 }
