@@ -11,8 +11,10 @@ type Props = {
   title: string;
   message?: string;
   buttonTitle?: string;
+  cancelTitle?: string;
   isLoading?: boolean;
   onClose: () => void;
+  onCancel?: () => void;
 };
 
 export default function AlertModal({
@@ -20,8 +22,10 @@ export default function AlertModal({
   title,
   message,
   buttonTitle = '확인',
+  cancelTitle = '취소',
   isLoading,
-  onClose
+  onClose,
+  onCancel
 }: Props) {
   // 키보드가 모달을 가리지 않도록 내린다
   useEffect(() => {
@@ -34,7 +38,18 @@ export default function AlertModal({
         <Text style={styles.title}>{title}</Text>
         {!!message && <Text style={styles.message}>{message}</Text>}
       </View>
-      <Button title={buttonTitle} loading={isLoading} onPress={onClose} />
+      <View style={styles.actions}>
+        {onCancel && (
+          <Button
+            title={cancelTitle}
+            containerStyle={styles.action}
+            buttonStyle={styles.cancelButton}
+            titleStyle={styles.cancelTitle}
+            onPress={onCancel}
+          />
+        )}
+        <Button title={buttonTitle} containerStyle={styles.action} loading={isLoading} onPress={onClose} />
+      </View>
     </View>
   );
 
@@ -57,7 +72,7 @@ export default function AlertModal({
       animationType="fade"
       statusBarTranslucent
       navigationBarTranslucent
-      onRequestClose={onClose}
+      onRequestClose={onCancel ?? onClose}
     >
       <View style={styles.backdrop}>{content}</View>
     </Modal>
@@ -81,5 +96,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
   },
   title: { fontFamily: 'Pretendard-Bold', fontSize: 19, lineHeight: 27, letterSpacing: -0.4 },
-  message: { marginTop: 6, fontSize: 15, lineHeight: 22, color: Colors.darkGray }
+  message: { marginTop: 6, fontSize: 15, lineHeight: 22, color: Colors.darkGray },
+  actions: { flexDirection: 'row', gap: 8 },
+  action: { flex: 1 },
+  cancelButton: { backgroundColor: Colors.superUltraLightGray },
+  cancelTitle: { color: Colors.black }
 });
