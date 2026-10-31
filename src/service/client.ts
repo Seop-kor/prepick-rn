@@ -3,13 +3,8 @@ import { create as createAxios } from 'axios';
 
 import { refreshSession } from '@/graphql/mutations';
 
-import {
-  clearTokens,
-  getAccessToken,
-  getAccessTokenExpiresAt,
-  getRefreshToken,
-  setTokens
-} from '@/stores/auth';
+import { getAccessToken, getAccessTokenExpiresAt, getRefreshToken, setTokens } from '@/stores/auth';
+import { logout } from '@/stores/session';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -71,7 +66,7 @@ async function doRefresh() {
     await setTokens(session);
   } catch (e) {
     // 서버가 refresh token을 거부하면 로그아웃. 네트워크 오류는 재시도를 위해 토큰 유지
-    if (e instanceof GraphQLError) await clearTokens();
+    if (e instanceof GraphQLError) await logout();
     throw e;
   }
 }
