@@ -10,7 +10,7 @@ import {
   View
 } from 'react-native';
 
-import type { Promotion } from '@/components/(tabs)/home/mock';
+import type { Promotion } from '@/graphql/queries';
 import Colors from '@/theme/color';
 
 const GAP = 10;

@@ -1,5 +1,5 @@
 import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/graphql/mutations';
-import { healthCheck } from '@/graphql/queries';
+import { currentUser, healthCheck, newStores, promotions, stores } from '@/graphql/queries';
 
 import { requestGraphQL } from '@/service/client';
 import { toDigits } from '@/utils/phone';
@@ -10,6 +10,22 @@ class API {
   // REST:     http.post('/upload', form).then((r) => r.data)
   healthCheck() {
     return requestGraphQL(healthCheck, {}, { skipAuth: true }).then((res) => res.healthCheck);
+  }
+
+  currentUser() {
+    return requestGraphQL(currentUser, {}).then((res) => res.currentUser);
+  }
+
+  promotions() {
+    return requestGraphQL(promotions, {}).then((res) => res.promotions);
+  }
+
+  stores(latitude: number, longitude: number, size: number) {
+    return requestGraphQL(stores, { latitude, longitude, size }).then((res) => res.stores.items);
+  }
+
+  newStores(size: number) {
+    return requestGraphQL(newStores, { size }).then((res) => res.newStores.items);
   }
 
   login(phone: string, password: string) {

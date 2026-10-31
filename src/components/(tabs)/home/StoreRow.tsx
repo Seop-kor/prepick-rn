@@ -1,7 +1,7 @@
 import { Text } from '@rneui/themed';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import type { Store } from '@/components/(tabs)/home/mock';
+import type { Store } from '@/graphql/queries';
 import StoreThumbnail from '@/components/(tabs)/home/StoreThumbnail';
 import Colors from '@/theme/color';
 import { formatDistance, toWalkingMinutes } from '@/utils/distance';
