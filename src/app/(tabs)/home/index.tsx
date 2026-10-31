@@ -1,8 +1,11 @@
 import { Text } from '@rneui/themed';
 import { StatusBar } from 'expo-status-bar';
 import { SymbolView } from 'expo-symbols';
-import { useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useState } from 'react';
 import {
+  AppState,
+  type AppStateStatus,
   Linking,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
@@ -17,7 +20,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import CartBar from '@/components/(tabs)/home/CartBar';
 import HomeSkeleton from '@/components/(tabs)/home/HomeSkeleton';
 import LiveOrderBar from '@/components/(tabs)/home/LiveOrderBar';
-import { MOCK_HOME } from '@/components/(tabs)/home/mock';
 import NewStoreCard from '@/components/(tabs)/home/NewStoreCard';
 import PromotionCarousel from '@/components/(tabs)/home/PromotionCarousel';
 import SectionHeader from '@/components/(tabs)/home/SectionHeader';
@@ -26,6 +28,15 @@ import StoreRow from '@/components/(tabs)/home/StoreRow';
 import { MOCK_ORDERS } from '@/components/(tabs)/orders/mock';
 import { isLiveOrder } from '@/components/(tabs)/orders/status';
 import AlertModal from '@/components/AlertModal';
+import { useCartSummary } from '@/stores/cart';
+import {
+  refreshLocationPermission,
+  useCoords,
+  useHasLocateFailed,
+  useLocationName,
+  useLocationPermission
+} from '@/stores/location';
+import { useCurrentUser, useNearbyStores, useNewStores, usePromotions } from '@/tanstack/hooks';
 import Colors from '@/theme/color';
 
 // 인사말이 가려지는 지점
@@ -41,11 +52,36 @@ const CHEVRON_DOWN_ICON = {
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [isCompactHeaderVisible, setIsCompactHeaderVisible] = useState(false);
-  // TODO: API 연결 시 쿼리 결과와 expo-location으로 교체
-  const { isLoading, isError, isLocationGranted, locationName, user, promotions, stores, newStores, cart } =
-    MOCK_HOME;
+  const permission = useLocationPermission();
+  const coords = useCoords();
+  const locationName = useLocationName() ?? '현재 위치';
+  const hasLocateFailed = useHasLocateFailed();
+  const currentUser = useCurrentUser();
+  const promotionsQuery = usePromotions();
+  const storesQuery = useNearbyStores(coords);
+  const newStoresQuery = useNewStores();
+  const cart = useCartSummary();
+  const queries = [currentUser, promotionsQuery, storesQuery, newStoresQuery];
+  const isLoading = currentUser.isPending || promotionsQuery.isPending || newStoresQuery.isPending;
+  const isError = queries.some((query) => query.isError);
+  const isLocationGranted = permission === 'granted';
+  const promotions = promotionsQuery.data ?? [];
+  const stores = storesQuery.data;
+  const newStores = newStoresQuery.data ?? [];
   const liveOrders = MOCK_ORDERS.filter(isLiveOrder);
   const floatingBarCount = Number(!!cart) + Number(liveOrders.length > 0);
+
+  // 탭 이동과 앱 복귀 때 권한을 다시 확인한다. 설정에서 권한을 바꾸고 돌아오는 경우
+  useFocusEffect(
+    useCallback(() => {
+      refreshLocationPermission();
+      function handleAppStateChange(state: AppStateStatus) {
+        if (state === 'active') refreshLocationPermission();
+      }
+      const subscription = AppState.addEventListener('change', handleAppStateChange);
+      return () => subscription.remove();
+    }, [])
+  );
 
   function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     setIsCompactHeaderVisible(e.nativeEvent.contentOffset.y > COMPACT_HEADER_OFFSET);
@@ -60,7 +96,7 @@ export default function HomeScreen() {
   }
 
   function handleRetry() {
-    // TODO: API 연결 시 실패한 쿼리만 refetch
+    queries.filter((query) => query.isError).forEach((query) => query.refetch());
   }
 
   if (isLoading) return <HomeSkeleton />;
@@ -74,7 +110,9 @@ export default function HomeScreen() {
         scrollEventThrottle={16}
       >
         <View style={styles.hello}>
-          <Text style={styles.helloName}>{`${user.name}님, 안녕하세요`}</Text>
+          {currentUser.data && (
+            <Text style={styles.helloName}>{`${currentUser.data.name}님, 안녕하세요`}</Text>
+          )}
           {isLocationGranted ? (
             <View style={styles.headline}>
               <View style={styles.headlineRow}>
@@ -106,8 +144,14 @@ export default function HomeScreen() {
 
         {isLocationGranted ? (
           <View style={styles.section}>
-            <SectionHeader title="가까운 매장" hasMore={stores.length > 0} />
-            {stores.length > 0 ? (
+            <SectionHeader title="가까운 매장" hasMore={!!stores?.length} />
+            {!coords && hasLocateFailed ? (
+              <SectionNotice
+                title="현재 위치를 확인할 수 없어요"
+                message="기기의 위치 서비스가 켜져 있는지 확인해주세요."
+                button={{ title: '검색하기', onPress: handleSearch, isGhost: true }}
+              />
+            ) : !stores ? null : stores.length > 0 ? (
               <View style={styles.rows}>
                 {stores.map((store) => (
                   <StoreRow key={store.id} store={store} />
@@ -122,12 +166,14 @@ export default function HomeScreen() {
             )}
           </View>
         ) : (
-          <SectionNotice
-            icon={{ ios: 'mappin.and.ellipse', android: 'location_on', web: 'location_on' }}
-            title="위치 권한이 꺼져 있어요"
-            message="권한을 켜면 가까운 매장과 도보 시간을 보여드려요."
-            button={{ title: '설정에서 켜기', onPress: handleOpenSettings }}
-          />
+          permission === 'denied' && (
+            <SectionNotice
+              icon={{ ios: 'mappin.and.ellipse', android: 'location_on', web: 'location_on' }}
+              title="위치 권한이 꺼져 있어요"
+              message="권한을 켜면 가까운 매장과 도보 시간을 보여드려요."
+              button={{ title: '설정에서 켜기', onPress: handleOpenSettings }}
+            />
+          )
         )}
 
         {newStores.length > 0 && (
