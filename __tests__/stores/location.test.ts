@@ -223,3 +223,28 @@ test('주소 결과가 없으면 현재 위치라고 표시한다', async () => 
 
   expect(store.getLocationName()).toBe('현재 위치');
 });
+
+test('초기화 뒤 권한이 다시 물어볼 수 있는 상태가 되면 denied로 본다', async () => {
+  setPermission('granted');
+  await store.initLocation();
+
+  setPermission('undetermined');
+  await store.refreshLocationPermission();
+
+  expect(store.getLocationPermission()).toBe('denied');
+  expect(Location.requestForegroundPermissionsAsync).not.toHaveBeenCalled();
+});
+
+test('현재 위치 요청이 10초 안에 끝나지 않으면 마지막 위치로 대체한다', async () => {
+  jest.useFakeTimers();
+  setPermission('granted');
+  Location.getCurrentPositionAsync.mockReturnValue(new Promise(() => {}));
+  Location.getLastKnownPositionAsync.mockResolvedValue(position(37.4, 127.1));
+
+  const initializing = store.initLocation();
+  await jest.advanceTimersByTimeAsync(10 * 1000);
+  await initializing;
+  jest.useRealTimers();
+
+  expect(store.getCoords()).toEqual({ latitude: 37.4, longitude: 127.1 });
+});

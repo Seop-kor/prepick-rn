@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "src/app/_layout.tsx": {
-    "mtime": 1792837248.7105615,
-    "seen": 1792837274.59289,
-    "ast_hash": "213f45f723bdf1e97990b5fa88fc9b20",
+    "mtime": 1793456198.955152,
+    "seen": 1793456261.0297542,
+    "ast_hash": "984bd2249bf45f7e275428685f6027a7",
     "semantic_hash": ""
   },
   "src/app/index.tsx": {
@@ -582,39 +582,39 @@
     "semantic_hash": ""
   },
   "__tests__/stores/cart.test.ts": {
-    "mtime": 1793455727.6109593,
-    "seen": 1793455923.384084,
-    "ast_hash": "edde15e5906bd9a27d7bba53a9c7f835",
+    "mtime": 1793456236.7591326,
+    "seen": 1793456261.029736,
+    "ast_hash": "6540ed104c33ee18d8be5bdd5ff39992",
     "semantic_hash": ""
   },
   "__tests__/stores/location.test.ts": {
-    "mtime": 1793455808.8945885,
-    "seen": 1793455923.384085,
-    "ast_hash": "d328f3a579da1d865799382c65038ec1",
+    "mtime": 1793456212.9121897,
+    "seen": 1793456261.029737,
+    "ast_hash": "d777e5b38a29f3916134b536aba232b4",
     "semantic_hash": ""
   },
   "__tests__/stores/session.test.ts": {
-    "mtime": 1793455727.6111875,
-    "seen": 1793455923.3840861,
-    "ast_hash": "4564e2633f882f92444bd57b022cfb84",
+    "mtime": 1793456191.0157926,
+    "seen": 1793456261.029738,
+    "ast_hash": "19ab428ed04047848e0c62761809ba81",
     "semantic_hash": ""
   },
   "src/stores/cart.ts": {
-    "mtime": 1793455654.0243516,
-    "seen": 1793455923.3841221,
-    "ast_hash": "0a3b7a6881e6806449fdba9b4b16598e",
+    "mtime": 1793456245.4589448,
+    "seen": 1793456261.0297751,
+    "ast_hash": "b35d1980b431038e321adb9ec609faad",
     "semantic_hash": ""
   },
   "src/stores/location.ts": {
-    "mtime": 1793455807.6036186,
-    "seen": 1793455923.3841228,
-    "ast_hash": "8686225505c965d0ee1947ce0c082236",
+    "mtime": 1793456230.016349,
+    "seen": 1793456261.0297759,
+    "ast_hash": "d01827640f7659b3f7853dbc0fe1f13a",
     "semantic_hash": ""
   },
   "src/stores/session.ts": {
-    "mtime": 1793455707.9303598,
-    "seen": 1793455923.3841238,
-    "ast_hash": "f144d8a13d09b1a7adeb28c42e9c445d",
+    "mtime": 1793456198.955296,
+    "seen": 1793456261.0297759,
+    "ast_hash": "50bc7dfdf19f31027dbe2e2f15a0b6ce",
     "semantic_hash": ""
   },
   "docs/plan/2026-10-31-home-api-plan.md": {
@@ -627,6 +627,12 @@
     "mtime": 1793453665.0521584,
     "seen": 1793455923.384143,
     "ast_hash": "11dca7426d00e34395c7d2c027a2af09",
+    "semantic_hash": ""
+  },
+  "src/tanstack/client.ts": {
+    "mtime": 1793456198.9375105,
+    "seen": 1793456261.0297768,
+    "ast_hash": "d85b4e7180aec8a7504890681c17cd87",
     "semantic_hash": ""
   }
 }

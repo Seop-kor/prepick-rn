@@ -45,7 +45,7 @@ function summarize(store: CartStore | null, items: CartItem[]): CartSummary | nu
   };
 }
 
-function setItems(items: CartItem[]) {
+function replaceItems(items: CartItem[]) {
   if (items.length === 0) {
     clearCart();
     return;
@@ -95,13 +95,13 @@ export function setCartItemQuantity(skuId: string, quantity: number) {
   const { items } = useCartStore.getState();
   const target = items.find((i) => i.skuId === skuId);
   if (!target || target.quantity === quantity) return;
-  setItems(items.map((i) => (i.skuId === skuId ? { ...i, quantity } : i)));
+  replaceItems(items.map((i) => (i.skuId === skuId ? { ...i, quantity } : i)));
 }
 
 export function removeCartItem(skuId: string) {
   const { items } = useCartStore.getState();
   if (!items.some((i) => i.skuId === skuId)) return;
-  setItems(items.filter((i) => i.skuId !== skuId));
+  replaceItems(items.filter((i) => i.skuId !== skuId));
 }
 
 export function clearCart() {

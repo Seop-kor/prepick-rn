@@ -1,17 +1,17 @@
 # Graph Report - prepick-rn  (2026-10-31)
 
 ## Corpus Check
-- 82 files · ~80,858 words
+- 83 files · ~81,037 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 15 file(s) not represented in the graph (top: .otf 9, (none) 4, .graphify-bak 1)
 
 ## Summary
-- 703 nodes · 1243 edges · 54 communities (44 shown, 10 thin omitted)
+- 705 nodes · 1252 edges · 51 communities (41 shown, 10 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 111 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6050a788`
+- Built from commit: `672ae96e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,11 +21,11 @@
 - expo
 - What You Must Do When Invoked
 - WelcomeScreen
-- client.ts
+- mock.ts
 - smart-order-consumer-app-PRD.md
 - devDependencies
 - graphify reference: extra exports and benchmark
-- PromotionCarousel.tsx
+- orders/index.tsx
 - tsconfig.json
 - Welcome to your Expo app 👋
 - AGENTS.md
@@ -52,20 +52,17 @@
 - color.ts
 - hooks.ts
 - cart.ts
-- home/index.tsx
-- StoreThumbnail.tsx
+- @rneui/themed
+- api.ts
 - scripts
 - [id].tsx
-- orders/index.tsx
-- @rneui/themed
+- react-native
+- OrdersScreen
 - eslint.config.js
 - codegen.ts
 - (tabs)/_layout.tsx
 - TermsBottomSheet
-- location.ts
-- api.ts
-- login/index.tsx
-- react-native
+- home/index.tsx
 - Home API 연동 설계
 - jest
 - MoreScreen
@@ -83,25 +80,25 @@
 10. `expo` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Task 3: 위치 store + 앱 시작 시 초기화` --references--> `getCoords()`  [INFERRED]
-  docs/plan/2026-10-31-home-api-plan.md → src/stores/location.ts
-- `Task 5: 홈 화면 연결` --references--> `CartBar()`  [INFERRED]
-  docs/plan/2026-10-31-home-api-plan.md → src/components/(tabs)/home/CartBar.tsx
 - `장바구니` --references--> `CartBar()`  [INFERRED]
   docs/spec/2026-10-31-home-api-design.md → src/components/(tabs)/home/CartBar.tsx
 - `로딩과 에러` --references--> `HomeSkeleton()`  [INFERRED]
   docs/spec/2026-10-31-home-api-design.md → src/components/(tabs)/home/HomeSkeleton.tsx
-- `Task 5: 홈 화면 연결` --references--> `SectionNotice()`  [INFERRED]
-  docs/plan/2026-10-31-home-api-plan.md → src/components/(tabs)/home/SectionNotice.tsx
+- `좌표: 실행당 한 번 고정` --references--> `SectionNotice()`  [INFERRED]
+  docs/spec/2026-10-31-home-api-design.md → src/components/(tabs)/home/SectionNotice.tsx
+- `Task 5: 홈 화면 연결` --references--> `AlertModal()`  [INFERRED]
+  docs/plan/2026-10-31-home-api-plan.md → src/components/AlertModal.tsx
+- `로딩과 에러` --references--> `AlertModal()`  [INFERRED]
+  docs/spec/2026-10-31-home-api-design.md → src/components/AlertModal.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (54 total, 10 thin omitted)
+## Communities (51 total, 10 thin omitted)
 
 ### Community 0 - "package.json"
-Cohesion: 0.07
-Nodes (29): main, name, private, version, expo, expo-constants, expo-dev-client, expo-device (+21 more)
+Cohesion: 0.06
+Nodes (31): main, name, private, version, expo, expo-constants, expo-dev-client, expo-device (+23 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.05
@@ -115,9 +112,9 @@ Nodes (25): backgroundColor, backgroundImage, foregroundImage, monochromeImage, 
 Cohesion: 0.08
 Nodes (23): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+15 more)
 
-### Community 5 - "client.ts"
-Cohesion: 0.10
-Nodes (29): Task 3: 위치 store + 앱 시작 시 초기화, axios, expo-secure-store, expo-splash-screen, @graphql-typed-document-node/core, @tanstack/react-query, zustand, IndexScreen() (+21 more)
+### Community 5 - "mock.ts"
+Cohesion: 0.18
+Nodes (13): Props, styles, item(), minutesAgo(), Order, OrderItem, OrderStatus, PAST_ORDERS (+5 more)
 
 ### Community 6 - "smart-order-consumer-app-PRD.md"
 Cohesion: 0.13
@@ -131,9 +128,9 @@ Nodes (14): devDependencies, eslint, eslint-config-expo, graphql, @graphql-codeg
 Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
-### Community 9 - "PromotionCarousel.tsx"
-Cohesion: 0.25
-Nodes (6): expo-image, BACKGROUNDS, PromotionCarousel(), Props, styles, Promotion
+### Community 9 - "orders/index.tsx"
+Cohesion: 0.24
+Nodes (7): date-fns, styles, OrderRow(), Props, styles, OrdersSkeleton(), isVoidOrder()
 
 ### Community 10 - "tsconfig.json"
 Cohesion: 0.25
@@ -172,8 +169,8 @@ Cohesion: 0.14
 Nodes (14): 1.1 제품 목표, 1.2 프로젝트 목적, 1.3 핵심 서비스 정책, 1. 제품 개요, 2.1 포함 기능, 2.2 제외 기능, 2. 제품 범위, Smart Order Consumer App PRD (+6 more)
 
 ### Community 23 - "signup/index.tsx"
-Cohesion: 0.07
-Nodes (32): LoginScreen(), handleChangePhone(), handleLogin(), handleLoginError(), EXPIRED_ALERT, getErrorCode(), getOtpRequestErrorMessage(), RETRY_ALERT (+24 more)
+Cohesion: 0.05
+Nodes (43): react, LoginScreen(), handleChangePhone(), handleLogin(), handleLoginError(), styles, EXPIRED_ALERT, getErrorCode() (+35 more)
 
 ### Community 24 - "4.2 회원가입 화면"
 Cohesion: 0.20
@@ -211,37 +208,37 @@ Nodes (3): 4.11 주문내역, 지난 주문 예시, 진행 중 주문 예시
 Cohesion: 0.67
 Nodes (3): 4.7 메뉴 상세, UI 예시, 주요 기능
 
+### Community 33 - "color.ts"
+Cohesion: 0.13
+Nodes (12): expo-router, react-native-safe-area-context, styles, TermsDetailModal(), TODO: 약관동의 API 연동 (SignUpInput에 동의 필드가 없어 현재는 UI만 존재), styles, TERMS, styles (+4 more)
+
 ### Community 34 - "hooks.ts"
 Cohesion: 0.08
-Nodes (43): Step 2 - Detect files, Task 4: 홈 쿼리와 타입, Auth API 연동 설계, 검증, 구조, 로그인, 목표, 범위 밖 (+35 more)
+Nodes (44): Step 2 - Detect files, Task 4: 홈 쿼리와 타입, Auth API 연동 설계, 검증, 구조, 로그인, 목표, 범위 밖 (+36 more)
 
 ### Community 35 - "cart.ts"
-Cohesion: 0.11
-Nodes (33): Global Constraints, Home API 연동 구현 계획, Review Focus, Task 1: 장바구니 store + 테스트 환경, Task 2: logout(), cartId (멱등키), 장바구니, ref_crypto (+25 more)
+Cohesion: 0.05
+Nodes (62): Global Constraints, Home API 연동 구현 계획, Review Focus, Task 1: 장바구니 store + 테스트 환경, Task 2: logout(), Task 3: 위치 store + 앱 시작 시 초기화, cartId (멱등키), 장바구니 (+54 more)
 
-### Community 36 - "home/index.tsx"
-Cohesion: 0.15
-Nodes (13): expo-symbols, CHEVRON_DOWN_ICON, TODO: 검색 화면 작업 시 이동, SEARCH_ICON, styles, Props, styles, Props (+5 more)
+### Community 36 - "@rneui/themed"
+Cohesion: 0.18
+Nodes (9): expo-symbols, @rneui/themed, Props, styles, Props, styles, Props, styles (+1 more)
 
-### Community 38 - "StoreThumbnail.tsx"
-Cohesion: 0.15
-Nodes (17): CartBar(), Props, styles, NewStoreCard(), Props, styles, Props, StoreRow() (+9 more)
+### Community 38 - "api.ts"
+Cohesion: 0.07
+Nodes (35): expo-image, NewStoreCard(), Props, styles, BACKGROUNDS, PromotionCarousel(), Props, styles (+27 more)
 
 ### Community 39 - "scripts"
 Cohesion: 0.20
 Nodes (10): scripts, android, codegen, format, ios, lint, reset-project, start (+2 more)
 
 ### Community 40 - "[id].tsx"
-Cohesion: 0.08
-Nodes (25): date-fns, OrderDetailScreen(), TODO: API 연결 시 order(id) 쿼리로 교체, TODO: 매장 상세 화면 작업 시 order.storeId로 이동, styles, item(), minutesAgo(), MOCK_ORDERS (+17 more)
-
-### Community 41 - "orders/index.tsx"
 Cohesion: 0.14
-Nodes (13): lodash, formatDay(), OrdersScreen(), styles, Skeleton(), SkeletonBlock(), styles, HomeSkeleton() (+5 more)
+Nodes (9): OrderDetailScreen(), TODO: API 연결 시 order(id) 쿼리로 교체, TODO: 매장 상세 화면 작업 시 order.storeId로 이동, styles, MOCK_ORDERS, OrderStepper(), Props, styles (+1 more)
 
-### Community 42 - "@rneui/themed"
+### Community 41 - "react-native"
 Cohesion: 0.18
-Nodes (10): react-native-reanimated, @rneui/themed, TODO: 로그아웃 API 연결, styles, AlertModal(), Props, styles, Props (+2 more)
+Nodes (12): react-native, react-native-reanimated, Props, SignupDone(), styles, Skeleton(), SkeletonBlock(), styles (+4 more)
 
 ### Community 43 - "eslint.config.js"
 Cohesion: 0.40
@@ -251,21 +248,9 @@ Nodes (4): { defineConfig }, expoConfig, eslint, eslint-config-expo
 Cohesion: 0.53
 Nodes (5): HomeIcon(), MoreIcon(), OrdersIcon(), TabIconProps, TabsLayout()
 
-### Community 47 - "location.ts"
-Cohesion: 0.10
-Nodes (22): Task 5: 홈 화면 연결, expo-location, ref_jest_globals, HomeScreen(), handleAppStateChange(), isLiveOrder(), applyPermission(), getCoords() (+14 more)
-
-### Community 48 - "api.ts"
-Cohesion: 0.18
-Nodes (15): src_graphql_generated_graphql, src_graphql_generated_graphql_promotionsquery, src_graphql_generated_graphql_storesquery, src_graphql_generated_index, src_graphql_generated_index_graphql, login, refreshSession, sendSignupOtp (+7 more)
-
-### Community 49 - "login/index.tsx"
-Cohesion: 0.20
-Nodes (10): expo-router, react, styles, AuthForm(), Props, styles, useKeyboardVisible(), FocusEvent (+2 more)
-
-### Community 50 - "react-native"
-Cohesion: 0.18
-Nodes (9): expo-status-bar, react-native, react-native-safe-area-context, styles, TermsDetailModal(), TODO: 약관동의 API 연동 (SignUpInput에 동의 필드가 없어 현재는 UI만 존재), styles, TERMS (+1 more)
+### Community 47 - "home/index.tsx"
+Cohesion: 0.09
+Nodes (30): Task 5: 홈 화면 연결, expo-location, ref_jest_globals, CHEVRON_DOWN_ICON, HomeScreen(), handleAppStateChange(), TODO: 검색 화면 작업 시 이동, SEARCH_ICON (+22 more)
 
 ### Community 51 - "Home API 연동 설계"
 Cohesion: 0.17
@@ -276,8 +261,8 @@ Cohesion: 0.50
 Nodes (4): jest, moduleNameMapper, preset, transformIgnorePatterns
 
 ## Knowledge Gaps
-- **305 isolated node(s):** `storeA`, `storeB`, `name`, `slug`, `version` (+300 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 380 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **304 isolated node(s):** `storeA`, `storeB`, `name`, `slug`, `version` (+299 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 379 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -285,15 +270,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
   _High betweenness centrality (0.076) - this node is a cross-community bridge._
-- **Why does `expo-router` connect `login/index.tsx` to `package.json`, `color.ts`, `home/index.tsx`, `client.ts`, `[id].tsx`, `orders/index.tsx`, `(tabs)/_layout.tsx`, `react-native`, `signup/index.tsx`?**
+- **Why does `expo-router` connect `color.ts` to `package.json`, `cart.ts`, `mock.ts`, `[id].tsx`, `orders/index.tsx`, `(tabs)/_layout.tsx`, `home/index.tsx`, `signup/index.tsx`?**
   _High betweenness centrality (0.051) - this node is a cross-community bridge._
-- **Why does `GraphQLError` connect `client.ts` to `login/index.tsx`, `hooks.ts`, `signup/index.tsx`?**
+- **Why does `GraphQLError` connect `cart.ts` to `hooks.ts`, `signup/index.tsx`?**
   _High betweenness centrality (0.050) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `SignupScreen()` (e.g. with `handleRequestCode()` and `handleSignup()`) actually correct?**
   _`SignupScreen()` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `storeA`, `storeB`, `name` to the rest of the system?**
-  _305 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _304 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0625 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._

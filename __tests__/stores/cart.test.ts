@@ -108,7 +108,7 @@ test('clearCart하면 cartId도 초기화된다', () => {
   expect(getCartItems()).toEqual([]);
 });
 
-test('요약은 수량 합과 금액 합을 계산한다', () => {
+test('상품을 담으면 요약에 수량 합과 금액 합이 나온다', () => {
   addCartItem(storeA, item('s1', 4000, 2));
   addCartItem(storeA, item('s2', 4500, 1));
 

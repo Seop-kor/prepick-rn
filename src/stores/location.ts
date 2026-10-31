@@ -13,6 +13,8 @@ type LocationState = {
 };
 
 const FALLBACK_LOCATION_NAME = '현재 위치';
+// 일부 Android 기기는 위치 요청이 끝나지 않는다
+const LOCATE_TIMEOUT_MS = 10 * 1000;
 
 const useLocationStore = create<LocationState>()(() => ({
   permission: 'unknown',
@@ -22,17 +24,30 @@ const useLocationStore = create<LocationState>()(() => ({
 }));
 
 let initializing: Promise<void> | null = null;
+let hasAskedPermission = false;
 let locating: Promise<void> | null = null;
 
 function toPermission(status: Location.PermissionStatus): LocationPermission {
   if (status === Location.PermissionStatus.GRANTED) return 'granted';
   if (status === Location.PermissionStatus.DENIED) return 'denied';
-  return 'unknown';
+  // iOS "한 번 허용"은 실행 중에도 undetermined로 돌아간다. 다시 묻지 않으므로 꺼진 것으로 본다
+  return hasAskedPermission ? 'denied' : 'unknown';
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error('timeout')), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 }
 
 async function readCoords(): Promise<Coords | null> {
   try {
-    const { coords } = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+    const { coords } = await withTimeout(
+      Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced }),
+      LOCATE_TIMEOUT_MS
+    );
     return { latitude: coords.latitude, longitude: coords.longitude };
   } catch {
     const last = await Location.getLastKnownPositionAsync().catch(() => null);
@@ -112,6 +127,7 @@ export function initLocation() {
     if (status === Location.PermissionStatus.UNDETERMINED) {
       ({ status } = await Location.requestForegroundPermissionsAsync());
     }
+    hasAskedPermission = true;
     await applyPermission(status);
   })();
   return initializing;
