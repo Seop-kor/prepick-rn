@@ -2,8 +2,8 @@ import { expect, jest, test } from '@jest/globals';
 
 import { clearTokens } from '@/stores/auth';
 
-import { addCartItem, getCartId } from '../cart';
-import { logout } from '../session';
+import { addCartItem, getCartId } from '@/stores/cart';
+import { logout } from '@/stores/session';
 
 jest.mock('@/stores/auth', () => ({ clearTokens: jest.fn(() => Promise.resolve()) }));
 jest.mock('@react-native-async-storage/async-storage', () =>

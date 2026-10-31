@@ -10,7 +10,7 @@ import {
   removeCartItem,
   setCartItemQuantity,
   type CartItem
-} from '../cart';
+} from '@/stores/cart';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   jest.requireActual('@react-native-async-storage/async-storage/jest/async-storage-mock')

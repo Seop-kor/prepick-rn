@@ -35,7 +35,7 @@
 
 **Files:**
 - Create: `src/stores/cart.ts`
-- Create: `src/stores/__tests__/cart.test.ts`
+- Create: `__tests__/stores/cart.test.ts`
 - Modify: `package.json` (jest 설정, `test` 스크립트)
 
 **Interfaces:**
@@ -112,8 +112,8 @@ jest.mock('expo-crypto', () => ({
 
 - [ ] **Step 4: 테스트가 실패하는지 확인한다**
 
-Run: `yarn test src/stores/__tests__/cart.test.ts`
-Expected: FAIL. `Cannot find module '../cart'`
+Run: `yarn test __tests__/stores/cart.test.ts`
+Expected: FAIL. `Cannot find module '@/stores/cart'`
 
 - [ ] **Step 5: `src/stores/cart.ts`를 구현한다**
 
@@ -128,13 +128,13 @@ Expected: FAIL. `Cannot find module '../cart'`
 
 - [ ] **Step 6: 테스트가 통과하는지 확인한다**
 
-Run: `yarn test src/stores/__tests__/cart.test.ts`
+Run: `yarn test __tests__/stores/cart.test.ts`
 Expected: PASS (10 tests)
 
 - [ ] **Step 7: 커밋한다**
 
 ```bash
-git add package.json yarn.lock src/stores/cart.ts src/stores/__tests__/cart.test.ts
+git add package.json yarn.lock src/stores/cart.ts __tests__/stores/cart.test.ts
 git commit -m "add: persisted cart store"
 ```
 
@@ -144,7 +144,7 @@ git commit -m "add: persisted cart store"
 
 **Files:**
 - Create: `src/stores/session.ts`
-- Create: `src/stores/__tests__/session.test.ts`
+- Create: `__tests__/stores/session.test.ts`
 - Modify: `src/service/client.ts:7,74`
 
 **Interfaces:**
@@ -159,8 +159,8 @@ git commit -m "add: persisted cart store"
 
 - [ ] **Step 2: 실패하는지 확인한다**
 
-Run: `yarn test src/stores/__tests__/session.test.ts`
-Expected: FAIL. `Cannot find module '../session'`
+Run: `yarn test __tests__/stores/session.test.ts`
+Expected: FAIL. `Cannot find module '@/stores/session'`
 
 - [ ] **Step 3: `logout()`을 구현하고 `client.ts`가 쓰게 한다**
 
@@ -174,7 +174,7 @@ Expected: 모든 테스트 PASS, 타입 에러 없음
 - [ ] **Step 5: 커밋한다**
 
 ```bash
-git add src/stores/session.ts src/stores/__tests__/session.test.ts src/service/client.ts
+git add src/stores/session.ts __tests__/stores/session.test.ts src/service/client.ts
 git commit -m "add: logout clears tokens and cart"
 ```
 
@@ -184,7 +184,7 @@ git commit -m "add: logout clears tokens and cart"
 
 **Files:**
 - Create: `src/stores/location.ts`
-- Create: `src/stores/__tests__/location.test.ts`
+- Create: `__tests__/stores/location.test.ts`
 - Modify: `src/app/index.tsx`
 - Modify: `app.json` (plugins)
 
@@ -207,7 +207,7 @@ git commit -m "add: logout clears tokens and cart"
 
 - [ ] **Step 1: 실패하는 테스트를 쓴다**
 
-`expo-location`을 mock한다. 대상은 `getForegroundPermissionsAsync`, `requestForegroundPermissionsAsync`, `getCurrentPositionAsync`, `getLastKnownPositionAsync`, `reverseGeocodeAsync`, `Accuracy: { Balanced: 3 }`이다. 모듈 수준 상태 때문에 `beforeEach`에서 `jest.resetModules()`를 호출하고 `require('../location')`로 새로 불러온다. 기본 mock 값은 다음과 같다.
+`expo-location`을 mock한다. 대상은 `getForegroundPermissionsAsync`, `requestForegroundPermissionsAsync`, `getCurrentPositionAsync`, `getLastKnownPositionAsync`, `reverseGeocodeAsync`, `Accuracy: { Balanced: 3 }`이다. 모듈 수준 상태 때문에 `beforeEach`에서 `jest.resetModules()`를 호출하고 `require('@/stores/location')`로 새로 불러온다. 기본 mock 값은 다음과 같다.
 - 위치: `{ coords: { latitude: 37.5, longitude: 127.03 } }`
 - 주소: `[{ district: '역삼동', subregion: '강남구', city: '서울' }]`
 
@@ -228,8 +228,8 @@ git commit -m "add: logout clears tokens and cart"
 
 - [ ] **Step 2: 실패하는지 확인한다**
 
-Run: `yarn test src/stores/__tests__/location.test.ts`
-Expected: FAIL. `Cannot find module '../location'`
+Run: `yarn test __tests__/stores/location.test.ts`
+Expected: FAIL. `Cannot find module '@/stores/location'`
 
 - [ ] **Step 3: `src/stores/location.ts`를 구현한다**
 
@@ -245,7 +245,7 @@ Expected: FAIL. `Cannot find module '../location'`
 
 - [ ] **Step 4: 통과하는지 확인한다**
 
-Run: `yarn test src/stores/__tests__/location.test.ts`
+Run: `yarn test __tests__/stores/location.test.ts`
 Expected: PASS (12 tests)
 
 - [ ] **Step 5: 앱 시작에 연결한다**
@@ -265,7 +265,7 @@ Expected: 에러 없음
 - [ ] **Step 7: 커밋한다**
 
 ```bash
-git add src/stores/location.ts src/stores/__tests__/location.test.ts src/app/index.tsx app.json
+git add src/stores/location.ts __tests__/stores/location.test.ts src/app/index.tsx app.json
 git commit -m "add: location store with one-time permission prompt"
 ```
 

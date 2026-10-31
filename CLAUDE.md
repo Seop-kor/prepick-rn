@@ -14,6 +14,7 @@ Rules:
 Rules:
 
 - 테스트 파일 작성 가독성을 위해 `~ 하면 ~ 한다`로 작성
+- 테스트 파일은 src와 같은 레벨의 `__tests__` 폴더에 src 구조 그대로 둔다. ex) src/stores/cart.ts -> __tests__/stores/cart.test.ts
 
 ## 코드 작성 시 유의사항 (중요)
 
