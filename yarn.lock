@@ -7919,6 +7919,11 @@ react-native-is-edge-to-edge@^1.3.1:
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.3.1.tgz#feb9a6a8faf0874298947edd556e5af22044e139"
   integrity sha512-NIXU/iT5+ORyCc7p0z2nnlkouYKX425vuU1OEm6bMMtWWR9yvb+Xg5AZmImTKoF9abxCPqrKC3rOZsKzUYgYZA==
 
+react-native-reanimated-carousel@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated-carousel/-/react-native-reanimated-carousel-5.2.0.tgz#d1dcc5b5698cfc00b3ceb447b263f4f4259d2568"
+  integrity sha512-LGsBY8PBCgdDNNk7PfVokcwlWjSFCCBAzHCvOzqrTk80TBG0R4AxCHD8gJPo2MhTLnJz5x+hsMJsQbPx8ULaKg==
+
 react-native-reanimated@4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-4.5.1.tgz#be81ed3a96bf70baeeccdc24d3350883099b7dd3"

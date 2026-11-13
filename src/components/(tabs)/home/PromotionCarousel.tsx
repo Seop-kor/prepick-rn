@@ -1,58 +1,50 @@
 import { Text } from '@rneui/themed';
 import { Image } from 'expo-image';
 import { useState } from 'react';
-import {
-  type NativeScrollEvent,
-  type NativeSyntheticEvent,
-  ScrollView,
-  StyleSheet,
-  useWindowDimensions,
-  View
-} from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Carousel, type CarouselPanGesture } from 'react-native-reanimated-carousel';
 
 import type { Promotion } from '@/graphql/queries';
 import Colors from '@/theme/color';
 
-const GAP = 10;
+const HEIGHT = 148;
+const AUTOPLAY_INTERVAL_MS = 4 * 1000;
 const BACKGROUNDS = [Colors.primary, Colors.secondary, Colors.black];
 
 type Props = { promotions: Promotion[] };
 
+// 세로 스크롤을 가로 스와이프로 가로채지 않게 한다
+function configurePanGesture(gesture: CarouselPanGesture) {
+  gesture.activeOffsetX([-10, 10]).failOffsetY([-10, 10]);
+}
+
 export default function PromotionCarousel({ promotions }: Props) {
   const { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
-  const itemWidth = width - 40;
-
-  function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
-    const next = Math.round(e.nativeEvent.contentOffset.x / (itemWidth + GAP));
-    setIndex(Math.min(Math.max(next, 0), promotions.length - 1));
-  }
+  const hasMany = promotions.length > 1;
 
   return (
     <View>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        snapToInterval={itemWidth + GAP}
-        decelerationRate="fast"
-        contentContainerStyle={styles.content}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-      >
-        {promotions.map((promotion, i) => (
-          <View
-            key={promotion.id}
-            style={[styles.item, { width: itemWidth, backgroundColor: BACKGROUNDS[i % BACKGROUNDS.length] }]}
-          >
-            {!!promotion.imageUrl && (
-              <Image source={promotion.imageUrl} style={styles.image} contentFit="contain" />
+      <Carousel
+        style={{ width, height: HEIGHT }}
+        data={promotions}
+        keyExtractor={(promotion) => promotion.id}
+        loop={hasMany}
+        autoplay={hasMany}
+        autoplayInterval={AUTOPLAY_INTERVAL_MS}
+        onConfigurePanGesture={configurePanGesture}
+        onSnapToItem={setIndex}
+        renderItem={({ item, index: i }) => (
+          <View style={[styles.item, { backgroundColor: BACKGROUNDS[i % BACKGROUNDS.length] }]}>
+            {!!item.imageUrl && (
+              <Image source={item.imageUrl} style={StyleSheet.absoluteFill} contentFit="cover" />
             )}
-            <Text style={styles.title}>{promotion.title}</Text>
-            <Text style={styles.description}>{promotion.description}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.description}>{item.description}</Text>
           </View>
-        ))}
-      </ScrollView>
-      {promotions.length > 1 && (
+        )}
+      />
+      {hasMany && (
         <View style={styles.count}>
           <Text style={styles.countText}>{`${index + 1} / ${promotions.length}`}</Text>
         </View>
@@ -62,9 +54,14 @@ export default function PromotionCarousel({ promotions }: Props) {
 }
 
 const styles = StyleSheet.create({
-  content: { gap: GAP, paddingHorizontal: 20 },
-  item: { height: 148, borderRadius: 20, paddingVertical: 22, paddingHorizontal: 20, overflow: 'hidden' },
-  image: { position: 'absolute', right: -10, bottom: -14, width: 140, height: 140 },
+  item: {
+    flex: 1,
+    marginHorizontal: 20,
+    borderRadius: 20,
+    paddingVertical: 22,
+    paddingHorizontal: 20,
+    overflow: 'hidden'
+  },
   title: {
     maxWidth: 200,
     fontFamily: 'Pretendard-ExtraBold',
