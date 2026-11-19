@@ -2,7 +2,7 @@ import { Text } from '@rneui/themed';
 import { differenceInCalendarDays } from 'date-fns';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import type { Store } from '@/components/(tabs)/home/mock';
+import type { Store } from '@/graphql/queries';
 import StoreThumbnail from '@/components/(tabs)/home/StoreThumbnail';
 import Colors from '@/theme/color';
 import { formatDistance } from '@/utils/distance';

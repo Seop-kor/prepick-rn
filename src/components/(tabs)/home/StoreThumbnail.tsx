@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import type { ReactNode } from 'react';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import type { Store } from '@/components/(tabs)/home/mock';
+import type { Store } from '@/graphql/queries';
 import Colors from '@/theme/color';
 
 // 이미지가 없는 매장의 대체 썸네일 색 [배경, 글자]
