@@ -1,0 +1,12 @@
+{
+  "jira": {
+    "cloudId": "",
+    "projectKey": "KAN",
+    "issueType": "Task",
+    "doneTransition": ""
+  },
+  "mode": {
+    "subagentMinModules": 3
+  },
+  "testCommand": ""
+}

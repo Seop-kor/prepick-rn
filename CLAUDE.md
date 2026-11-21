@@ -36,3 +36,13 @@ function ExampleComp({ onClose }) {
 - src/components에 들어가는 컴포넌트들의 function 이름은 마지막에 Screen을 넣지 않는다. ex) AuthScreen X -> AuthForm or BaseAuth 등
 - boolean 값을 담는 변수는 is, has 등이 붙는다. ex) isVisible, hasAccount
 - 함수는 이름이 말하는 일만 한다. 이름과 상관없는 동작을 기존 함수에 끼워 넣지 않는다. 여러 동작을 묶어야 하면 그 묶음을 설명하는 이름의 함수를 새로 만든다. ex) clearTokens 안에서 장바구니 비우기 X -> clearTokens와 clearCart를 호출하는 logout 함수를 만든다
+
+## Agent skills
+
+### Issue tracker
+
+이슈는 Jira로 관리하고 spec은 `docs/features/<slug>/design.md`에 둡니다(pi graph 워크플로). See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+single-context(루트 `GLOSSARY.md` + `docs/adr/`). See `docs/agents/domain.md`.

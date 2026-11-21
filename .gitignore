@@ -44,3 +44,7 @@ example
 
 # graphql codegen output
 src/graphql/__generated__/
+
+# .pi 에이전트
+.pi/graph/runs/
+.pi/graph/skills.json
