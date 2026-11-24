@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import type { Order } from '@/components/(tabs)/orders/mock';
+import type { Order } from '@/graphql/queries';
 import { ORDER_STATUS } from '@/components/(tabs)/orders/status';
 import Colors from '@/theme/color';
 

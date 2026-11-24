@@ -25,8 +25,6 @@ import PromotionCarousel from '@/components/(tabs)/home/PromotionCarousel';
 import SectionHeader from '@/components/(tabs)/home/SectionHeader';
 import SectionNotice from '@/components/(tabs)/home/SectionNotice';
 import StoreRow from '@/components/(tabs)/home/StoreRow';
-import { MOCK_ORDERS } from '@/components/(tabs)/orders/mock';
-import { isLiveOrder } from '@/components/(tabs)/orders/status';
 import AlertModal from '@/components/AlertModal';
 import { useCartSummary } from '@/stores/cart';
 import {
@@ -36,7 +34,13 @@ import {
   useLocationName,
   useLocationPermission
 } from '@/stores/location';
-import { useCurrentUser, useNearbyStores, useNewStores, usePromotions } from '@/tanstack/hooks';
+import {
+  useCurrentUser,
+  useNearbyStores,
+  useOngoingOrders,
+  useNewStores,
+  usePromotions
+} from '@/tanstack/hooks';
 import Colors from '@/theme/color';
 
 // 인사말이 가려지는 지점
@@ -60,16 +64,21 @@ export default function HomeScreen() {
   const promotionsQuery = usePromotions();
   const storesQuery = useNearbyStores(coords);
   const newStoresQuery = useNewStores();
+  const ongoingOrdersQuery = useOngoingOrders();
   const cart = useCartSummary();
   const queries = [currentUser, promotionsQuery, storesQuery, newStoresQuery];
-  const isLoading = currentUser.isPending || promotionsQuery.isPending || newStoresQuery.isPending;
+  const isLoading =
+    currentUser.isPending ||
+    promotionsQuery.isPending ||
+    newStoresQuery.isPending ||
+    ongoingOrdersQuery.isPending;
   const isError = queries.some((query) => query.isError);
   const isLocationGranted = permission === 'granted';
   const promotions = promotionsQuery.data ?? [];
   const stores = storesQuery.data;
   const newStores = newStoresQuery.data ?? [];
-  const liveOrders = MOCK_ORDERS.filter(isLiveOrder);
-  const floatingBarCount = Number(!!cart) + Number(liveOrders.length > 0);
+  const ongoingOrders = ongoingOrdersQuery.isError ? [] : (ongoingOrdersQuery.data ?? []);
+  const floatingBarCount = Number(!!cart) + Number(ongoingOrders.length > 0);
 
   // 탭 이동과 앱 복귀 때 권한을 다시 확인한다. 설정에서 권한을 바꾸고 돌아오는 경우
   useFocusEffect(
@@ -213,7 +222,7 @@ export default function HomeScreen() {
         </Animated.View>
       )}
 
-      {liveOrders.length > 0 && <LiveOrderBar orders={liveOrders} bottom={cart ? 84 : 12} />}
+      {ongoingOrders.length > 0 && <LiveOrderBar orders={ongoingOrders} bottom={cart ? 84 : 12} />}
       {cart && <CartBar store={cart.store} itemCount={cart.itemCount} totalPrice={cart.totalPrice} />}
 
       <AlertModal

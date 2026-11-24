@@ -1,4 +1,5 @@
-import type { Order, OrderStatus } from '@/components/(tabs)/orders/mock';
+import type { OrderStatus } from '@/graphql/__generated__/graphql';
+import type { Order } from '@/graphql/queries';
 import Colors from '@/theme/color';
 
 type StatusInfo = {
@@ -15,21 +16,21 @@ type StatusInfo = {
 export const ORDER_STEPS = ['확인', '접수', '준비', '픽업 가능'];
 
 export const ORDER_STATUS: Record<OrderStatus, StatusInfo> = {
-  PENDING: {
+  CREATED: {
     label: '주문 확인 중',
     message: '주문을 확인하고 있어요',
     labelColor: Colors.primary,
     messageColor: Colors.black,
     step: 0
   },
-  ACCEPTED: {
+  CONFIRMED: {
     label: '주문 접수',
     message: '주문이 접수됐어요',
     labelColor: Colors.primary,
     messageColor: Colors.black,
     step: 1
   },
-  PREPARING: {
+  IN_PROGRESS: {
     label: '메뉴 준비 중',
     message: '메뉴를 만들고 있어요',
     labelColor: Colors.primary,
@@ -37,14 +38,14 @@ export const ORDER_STATUS: Record<OrderStatus, StatusInfo> = {
     step: 2
   },
   READY: {
-    label: '픽업 가능',
+    label: '준비 완료',
     message: '카운터에서 받아가세요',
     labelColor: Colors.green,
     messageColor: Colors.green,
     step: 3
   },
   PICKED_UP: {
-    label: '픽업 완료',
+    label: '수령 완료',
     message: '픽업을 완료했어요',
     labelColor: Colors.darkGray,
     messageColor: Colors.black,
@@ -56,13 +57,6 @@ export const ORDER_STATUS: Record<OrderStatus, StatusInfo> = {
     labelColor: Colors.red,
     messageColor: Colors.red,
     step: null
-  },
-  REJECTED: {
-    label: '주문 거절',
-    message: '주문이 거절됐어요',
-    labelColor: Colors.red,
-    messageColor: Colors.red,
-    step: null
   }
 };
 
@@ -71,5 +65,5 @@ export function isLiveOrder(order: Order) {
 }
 
 export function isVoidOrder(order: Order) {
-  return order.status === 'CANCELED' || order.status === 'REJECTED';
+  return order.status === 'CANCELED';
 }
