@@ -1,0 +1,32 @@
+# AC-4, AC-5, AC-6: 주문 행을 누르면 order(id) 응답으로 상세를 표시하고 뒤로 돌아온다
+appId: com.anonymous.prepickrn
+tags:
+  - orders
+---
+- runFlow: subflows/launch-and-login.yaml
+- tapOn: '주문내역'
+- extendedWaitUntil:
+    notVisible: '불러오는 중'
+    timeout: 20000
+- runFlow:
+    when:
+      notVisible: '아직 주문한 내역이 없어요'
+    commands:
+      - tapOn:
+          text: '.*(주문 확인 중|주문 접수|메뉴 준비 중|준비 완료|수령 완료|주문 취소).*'
+          index: 0
+      - assertVisible: '주문 상세'
+      - extendedWaitUntil:
+          visible: '총 주문 금액'
+          timeout: 20000
+      - assertNotVisible: '주문 정보를 불러오지 못했어요'
+      - assertNotVisible: '주문 정보를 찾을 수 없어요.'
+      - assertVisible: '.*(주문을 확인하고 있어요|주문이 접수됐어요|메뉴를 만들고 있어요|카운터에서 받아가세요|픽업을 완료했어요|주문이 취소됐어요).*'
+      - assertVisible: '주문 메뉴'
+      - assertNotVisible: '매장 사정으로 주문을 받지 못했어요.'
+      - scrollUntilVisible:
+          element: '매장 보기'
+      - assertVisible: '주문 일시'
+      - assertVisible: '결제 일시'
+      - tapOn: '뒤로'
+      - assertNotVisible: '주문 상세'
