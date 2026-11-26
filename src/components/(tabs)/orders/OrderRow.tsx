@@ -2,7 +2,7 @@ import { Text } from '@rneui/themed';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import type { Order } from '@/components/(tabs)/orders/mock';
+import type { Order } from '@/graphql/queries';
 import { isVoidOrder, ORDER_STATUS } from '@/components/(tabs)/orders/status';
 import Colors from '@/theme/color';
 

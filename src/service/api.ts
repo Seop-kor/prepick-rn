@@ -1,5 +1,6 @@
 import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/graphql/mutations';
-import { currentUser, healthCheck, newStores, promotions, stores } from '@/graphql/queries';
+import type { OrderStatus } from '@/graphql/__generated__/graphql';
+import { currentUser, healthCheck, newStores, order, orders, promotions, stores } from '@/graphql/queries';
 
 import { requestGraphQL } from '@/service/client';
 import { toDigits } from '@/utils/phone';
@@ -26,6 +27,14 @@ class API {
 
   newStores(size: number) {
     return requestGraphQL(newStores, { size }).then((res) => res.newStores.items);
+  }
+
+  getOrders(cursor: string | null, size: number, statuses?: OrderStatus[]) {
+    return requestGraphQL(orders, { cursor, size, statuses }).then((res) => res.orders);
+  }
+
+  getOrder(id: string) {
+    return requestGraphQL(order, { id }).then((res) => res.order);
   }
 
   login(phone: string, password: string) {

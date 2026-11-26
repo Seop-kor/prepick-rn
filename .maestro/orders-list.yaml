@@ -1,0 +1,35 @@
+# AC-1, AC-2, AC-3, AC-7, AC-8: 주문 목록이 실제 응답으로 표시되고 페이지네이션 중 오류가 없다
+appId: com.anonymous.prepickrn
+tags:
+  - orders
+---
+- runFlow: subflows/launch-and-login.yaml
+- tapOn: '주문내역'
+- extendedWaitUntil:
+    notVisible: '불러오는 중'
+    timeout: 20000
+- assertNotVisible: '주문내역을 불러오지 못했어요'
+
+# 주문이 없으면 빈 상태를 보여준다
+- runFlow:
+    when:
+      visible: '아직 주문한 내역이 없어요'
+    commands:
+      - assertVisible: '주문할 매장 찾기'
+
+# 주문이 있으면 서버 상태 라벨로 표시하고 예전 MOCK 라벨은 남지 않는다
+- runFlow:
+    when:
+      notVisible: '아직 주문한 내역이 없어요'
+    commands:
+      - assertVisible: '.*(주문 확인 중|주문 접수|메뉴 준비 중|준비 완료|수령 완료|주문 취소).*'
+      - assertNotVisible: '.*(주문 거절|픽업 가능|픽업 완료).*'
+      # 목록 끝까지 내려 다음 페이지를 불러온다
+      - repeat:
+          times: 5
+          commands:
+            - scroll
+            - waitForAnimationToEnd:
+                timeout: 3000
+      - assertNotVisible: '주문내역을 불러오지 못했어요'
+      - assertNotVisible: '.*(주문 거절|픽업 가능|픽업 완료).*'

@@ -25,7 +25,11 @@ export default function OrdersScreen() {
     fetchNextPage,
     refetch
   } = useOrders();
-  const orders = data?.pages.flatMap((page) => page.items) ?? [];
+  const orders = Array.from(
+    new Map(
+      (data?.pages.flatMap((page) => page.items) ?? []).map((order) => [order.id, order] as const)
+    ).values()
+  );
   const sections = Object.entries(
     groupBy(orders, (order) => startOfDay(new Date(order.createdAt)).toISOString())
   ).map(([day, dayOrders]) => ({ title: formatDay(new Date(day)), data: dayOrders }));

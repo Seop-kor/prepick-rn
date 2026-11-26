@@ -2,27 +2,58 @@ import { Text } from '@rneui/themed';
 import { format } from 'date-fns';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { MOCK_ORDERS } from '@/components/(tabs)/orders/mock';
 import OrderStepper from '@/components/(tabs)/orders/OrderStepper';
-import { ORDER_STATUS } from '@/components/(tabs)/orders/status';
+import { isVoidOrder, ORDER_STATUS } from '@/components/(tabs)/orders/status';
+import AlertModal from '@/components/AlertModal';
+import { useOrder } from '@/tanstack/hooks';
 import Colors from '@/theme/color';
 
 const DATE_FORMAT = 'yyyy.MM.dd HH:mm';
 
 export default function OrderDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  // TODO: API 연결 시 order(id) 쿼리로 교체
-  const order = MOCK_ORDERS.find((o) => o.id === id);
+  const { data: order, isPending, isError, isFetching, refetch } = useOrder(id);
 
   function handleBack() {
     router.back();
   }
 
+  function handleRetry() {
+    refetch();
+  }
+
   function handleStorePress() {
     // TODO: 매장 상세 화면 작업 시 order.storeId로 이동
+  }
+
+  if (isPending) {
+    return (
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <Header onBack={handleBack} />
+        <View style={styles.loading}>
+          <ActivityIndicator color={Colors.gray} />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (isError) {
+    return (
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <Header onBack={handleBack} />
+        <AlertModal
+          isVisible
+          title="주문 정보를 불러오지 못했어요"
+          message="네트워크 연결을 확인하고 다시 시도해주세요."
+          buttonTitle="다시 시도"
+          isLoading={isFetching}
+          onClose={handleRetry}
+        />
+      </SafeAreaView>
+    );
   }
 
   if (!order) {
@@ -36,6 +67,7 @@ export default function OrderDetailScreen() {
 
   const { storeName, prefixOrderNumber, status, items, amount, request, createdAt, paidAt } = order;
   const { message, messageColor, step } = ORDER_STATUS[status];
+  const isVoid = isVoidOrder(order);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -61,7 +93,6 @@ export default function OrderDetailScreen() {
               </View>
             )}
           </View>
-          {status === 'REJECTED' && <Text style={styles.sub}>매장 사정으로 주문을 받지 못했어요.</Text>}
           {step !== null && <OrderStepper step={step} />}
         </View>
 
@@ -81,7 +112,9 @@ export default function OrderDetailScreen() {
           ))}
           <View style={styles.total}>
             <Text style={styles.totalLabel}>총 주문 금액</Text>
-            <Text style={styles.totalValue}>{`${amount.toLocaleString()}원`}</Text>
+            <Text
+              style={[styles.totalValue, isVoid && styles.totalVoid]}
+            >{`${amount.toLocaleString()}원`}</Text>
           </View>
         </View>
 
@@ -144,6 +177,7 @@ const styles = StyleSheet.create({
   back: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
   headerTitle: { flex: 1, textAlign: 'center', fontFamily: 'Pretendard-Bold', fontSize: 17 },
   scroll: { paddingBottom: 32 },
+  loading: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   notFound: { marginTop: 40, textAlign: 'center', fontSize: 15, color: Colors.darkGray },
   head: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 22 },
   headRow: { flexDirection: 'row', alignItems: 'flex-end', gap: 12 },
@@ -165,7 +199,6 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: -1
   },
-  sub: { marginTop: 6, fontSize: 14, lineHeight: 21, color: Colors.darkGray },
   band: { height: 8, backgroundColor: Colors.superUltraLightGray },
   section: { padding: 20 },
   sectionTitle: { marginBottom: 10, fontFamily: 'Pretendard-Bold', fontSize: 15 },
@@ -184,6 +217,7 @@ const styles = StyleSheet.create({
   },
   totalLabel: { fontFamily: 'Pretendard-Bold', fontSize: 15 },
   totalValue: { fontFamily: 'Pretendard-ExtraBold', fontSize: 20, letterSpacing: -0.6 },
+  totalVoid: { color: Colors.gray, textDecorationLine: 'line-through' },
   info: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, paddingVertical: 5 },
   infoLabel: { fontSize: 14, color: Colors.darkGray },
   infoValue: { flexShrink: 1, fontSize: 14, textAlign: 'right' },

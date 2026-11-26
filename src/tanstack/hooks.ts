@@ -1,9 +1,17 @@
 import { skipToken, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 
+import API from '@/service/api';
 import { setTokens } from '@/stores/auth';
 import type { Coords } from '@/stores/location';
 import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/tanstack/mutations';
-import { getCurrentUser, getNearbyStores, getNewStores, getOrders, getPromotions } from '@/tanstack/queries';
+import {
+  getCurrentUser,
+  getNearbyStores,
+  getOngoingOrders,
+  getNewStores,
+  getOrders,
+  getPromotions
+} from '@/tanstack/queries';
 
 export function useLogin() {
   return useMutation({
@@ -45,6 +53,14 @@ export function useOrders() {
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor
   });
+}
+
+export function useOrder(id: string) {
+  return useQuery({ queryKey: ['order', id], queryFn: () => API.getOrder(id) });
+}
+
+export function useOngoingOrders() {
+  return useQuery({ queryKey: ['ongoingOrders'], queryFn: getOngoingOrders });
 }
 
 export function useCurrentUser() {
