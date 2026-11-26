@@ -8,6 +8,10 @@ env:
     clearKeychain: true
     permissions:
       location: allow
+# 콜드 스타트 중 링크를 보내면 URL이 유실되므로 dev launcher가 뜬 뒤 연결한다
+- extendedWaitUntil:
+    visible: 'Development Build|DEVELOPMENT SERVERS'
+    timeout: 30000
 - openLink: prepickrn://expo-development-client/?url=${encodeURIComponent(METRO_URL)}
 # iOS 시뮬레이터의 링크 열기 확인창
 - runFlow:
@@ -15,12 +19,24 @@ env:
       visible: 'Open|열기'
     commands:
       - tapOn: 'Open|열기'
+- extendedWaitUntil:
+    visible: 'Continue|Runtime version: .*|휴대폰 번호로 로그인|.*님, 안녕하세요'
+    timeout: 60000
+- waitForAnimationToEnd
 # dev client 최초 실행 안내
 - runFlow:
     when:
       visible: 'Continue'
     commands:
       - tapOn: 'Continue'
+      - waitForAnimationToEnd
+# 최초 실행 시 자동으로 열리는 dev menu가 앱 화면을 가린다
+- runFlow:
+    when:
+      visible: 'Runtime version: .*'
+    commands:
+      - tapOn: 'Close'
+      - waitForAnimationToEnd
 - extendedWaitUntil:
     visible: '휴대폰 번호로 로그인|.*님, 안녕하세요'
     timeout: 60000
@@ -33,6 +49,7 @@ env:
       - inputText: ${PHONE}
       - tapOn: '비밀번호 입력'
       - inputText: ${PASSWORD}
+      - hideKeyboard
       - tapOn: '로그인'
 - extendedWaitUntil:
     visible: '.*님, 안녕하세요'
