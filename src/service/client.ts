@@ -1,7 +1,7 @@
 import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 import { create as createAxios } from 'axios';
 
-import { refreshSession } from '@/graphql/mutations';
+import { logout as logoutDocument, refreshSession } from '@/graphql/mutations';
 
 import { getAccessToken, getAccessTokenExpiresAt, getRefreshToken, setTokens } from '@/stores/auth';
 import { logout } from '@/stores/session';
@@ -63,6 +63,11 @@ async function doRefresh() {
       { refreshToken },
       { skipAuth: true }
     );
+    // 갱신 중에 로그아웃했으면 새 세션을 저장하지 않고 서버에서 폐기한다
+    if (getRefreshToken() !== refreshToken) {
+      postGraphQL(logoutDocument, { refreshToken: session.refreshToken }, { skipAuth: true }).catch(() => {});
+      throw new Error('Logged out during refresh');
+    }
     await setTokens(session);
   } catch (e) {
     // 서버가 refresh token을 거부하면 로그아웃. 네트워크 오류는 재시도를 위해 토큰 유지

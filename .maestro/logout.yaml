@@ -1,0 +1,20 @@
+# AC-1, AC-7, AC-10: 더보기에 내 이름이 보이고 로그아웃하면 웰컴 화면으로 이동한다
+appId: com.anonymous.prepickrn
+tags:
+  - logout
+---
+- runFlow: subflows/launch-and-login.yaml
+- tapOn: '더보기'
+- extendedWaitUntil:
+    visible:
+      id: 'profile-name'
+      text: '.+님'
+    timeout: 10000
+- tapOn: '로그아웃'
+- assertVisible: '로그아웃할까요?'
+- tapOn:
+    text: '로그아웃'
+    below: '다시 주문하려면 로그인해야 해요.'
+- extendedWaitUntil:
+    visible: '휴대폰 번호로 로그인'
+    timeout: 10000

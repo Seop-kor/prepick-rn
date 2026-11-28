@@ -1,5 +1,6 @@
 import { beforeEach, expect, jest, test } from '@jest/globals';
 
+import { logout } from '@/graphql/mutations';
 import { order, orders } from '@/graphql/queries';
 import API from '@/service/api';
 import { requestGraphQL } from '@/service/client';
@@ -36,4 +37,11 @@ test('주문 상세가 없으면 null을 반환한다', async () => {
   requestGraphQLMock.mockResolvedValue({ order: null } as never);
 
   await expect(API.getOrder('missing-order')).resolves.toBeNull();
+});
+
+test('로그아웃하면 refresh token과 skipAuth로 logout 뮤테이션을 요청한다', async () => {
+  requestGraphQLMock.mockResolvedValue({ logout: true } as never);
+
+  await expect(API.logout('refresh-token')).resolves.toBe(true);
+  expect(requestGraphQLMock).toHaveBeenCalledWith(logout, { refreshToken: 'refresh-token' }, { skipAuth: true });
 });

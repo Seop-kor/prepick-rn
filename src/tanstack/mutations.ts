@@ -4,6 +4,10 @@ export async function login(phone: string, password: string) {
   return API.login(phone, password);
 }
 
+export async function logout(refreshToken: string) {
+  return API.logout(refreshToken);
+}
+
 export async function sendSignupOtp(phone: string) {
   return API.sendSignupOtp(phone);
 }

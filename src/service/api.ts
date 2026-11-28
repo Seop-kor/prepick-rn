@@ -1,4 +1,4 @@
-import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/graphql/mutations';
+import { login, logout, sendSignupOtp, signUp, verifySignupOtp } from '@/graphql/mutations';
 import type { OrderStatus } from '@/graphql/__generated__/graphql';
 import { currentUser, healthCheck, newStores, order, orders, promotions, stores } from '@/graphql/queries';
 
@@ -41,6 +41,10 @@ class API {
     return requestGraphQL(login, { input: { phone: toDigits(phone), password } }, { skipAuth: true }).then(
       (res) => res.login
     );
+  }
+
+  logout(refreshToken: string) {
+    return requestGraphQL(logout, { refreshToken }, { skipAuth: true }).then((res) => res.logout);
   }
 
   sendSignupOtp(phone: string) {

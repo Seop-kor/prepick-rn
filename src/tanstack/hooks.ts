@@ -1,11 +1,12 @@
 import { skipToken, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 
 import API from '@/service/api';
-import { setTokens } from '@/stores/auth';
+import { getRefreshToken, setTokens } from '@/stores/auth';
 import type { Coords } from '@/stores/location';
-import { login, sendSignupOtp, signUp, verifySignupOtp } from '@/tanstack/mutations';
+import { logout as clearSession } from '@/stores/session';
+import { login, logout, sendSignupOtp, signUp, verifySignupOtp } from '@/tanstack/mutations';
 import {
-  getCurrentUser,
+  currentUserQuery,
   getNearbyStores,
   getOngoingOrders,
   getNewStores,
@@ -17,6 +18,17 @@ export function useLogin() {
   return useMutation({
     mutationFn: ({ phone, password }: { phone: string; password: string }) => login(phone, password),
     onSuccess: setTokens
+  });
+}
+
+export function useLogout() {
+  return useMutation({
+    mutationFn: async () => {
+      const refreshToken = getRefreshToken();
+      // 서버 세션 폐기는 기다리지 않고 실패해도 알리지 않는다
+      if (refreshToken) logout(refreshToken).catch(() => {});
+      await clearSession();
+    }
   });
 }
 
@@ -64,7 +76,7 @@ export function useOngoingOrders() {
 }
 
 export function useCurrentUser() {
-  return useQuery({ queryKey: ['currentUser'], queryFn: getCurrentUser });
+  return useQuery(currentUserQuery);
 }
 
 export function usePromotions() {

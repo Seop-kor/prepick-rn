@@ -76,3 +76,9 @@ export const signUp = graphql(`
     }
   }
 `);
+
+export const logout = graphql(`
+  mutation logout($refreshToken: String!) {
+    logout(refreshToken: $refreshToken)
+  }
+`);

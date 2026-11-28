@@ -1,8 +1,10 @@
 import { beforeEach, expect, jest, test } from '@jest/globals';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 
 import API from '@/service/api';
-import { useOngoingOrders, useOrder, useOrders } from '@/tanstack/hooks';
+import { getRefreshToken } from '@/stores/auth';
+import { logout } from '@/stores/session';
+import { useLogout, useOngoingOrders, useOrder, useOrders } from '@/tanstack/hooks';
 import { getOngoingOrders, getOrders } from '@/tanstack/queries';
 
 jest.mock('@tanstack/react-query', () => ({
@@ -14,8 +16,11 @@ jest.mock('@tanstack/react-query', () => ({
 
 jest.mock('@/service/api', () => ({
   __esModule: true,
-  default: { getOrder: jest.fn() }
+  default: { getOrder: jest.fn(), logout: jest.fn() }
 }));
+
+jest.mock('@/stores/auth', () => ({ getRefreshToken: jest.fn(), setTokens: jest.fn() }));
+jest.mock('@/stores/session', () => ({ logout: jest.fn() }));
 
 jest.mock('@/tanstack/queries', () => ({
   getCurrentUser: jest.fn(),
@@ -27,7 +32,11 @@ jest.mock('@/tanstack/queries', () => ({
 }));
 
 const useInfiniteQueryMock = jest.mocked(useInfiniteQuery);
+const useMutationMock = jest.mocked(useMutation);
 const useQueryMock = jest.mocked(useQuery);
+const apiLogoutMock = jest.mocked(API.logout);
+const getRefreshTokenMock = jest.mocked(getRefreshToken);
+const localLogoutMock = jest.mocked(logout);
 const getOrderMock = jest.mocked(API.getOrder);
 const getOrdersMock = jest.mocked(getOrders);
 
@@ -79,4 +88,53 @@ test('주문 상세를 조회하면 id를 query key와 API 요청에 사용한�
   const queryFn = options.queryFn as () => Promise<unknown>;
   await expect(queryFn()).resolves.toBe(order);
   expect(getOrderMock).toHaveBeenCalledWith('order-1');
+});
+
+function getLogoutMutationFn() {
+  useLogout();
+  return useMutationMock.mock.calls[0][0].mutationFn as () => Promise<unknown>;
+}
+
+test('로그아웃하면 지우기 전의 refresh token으로 서버 로그아웃을 요청하고 로컬 로그아웃을 실행한다', async () => {
+  let refreshToken: string | null = 'refresh-token';
+  getRefreshTokenMock.mockImplementation(() => refreshToken);
+  localLogoutMock.mockImplementation(async () => {
+    refreshToken = null;
+  });
+  apiLogoutMock.mockResolvedValue(true);
+
+  await getLogoutMutationFn()();
+
+  expect(apiLogoutMock).toHaveBeenCalledWith('refresh-token');
+  expect(localLogoutMock).toHaveBeenCalledTimes(1);
+});
+
+test('서버 로그아웃 응답이 끝나지 않아도 로컬 로그아웃이 끝난다', async () => {
+  getRefreshTokenMock.mockReturnValue('refresh-token');
+  localLogoutMock.mockResolvedValue();
+  apiLogoutMock.mockReturnValue(new Promise(() => {}));
+
+  await getLogoutMutationFn()();
+
+  expect(localLogoutMock).toHaveBeenCalledTimes(1);
+});
+
+test('서버 로그아웃 요청이 실패해도 로그아웃은 오류 없이 끝난다', async () => {
+  getRefreshTokenMock.mockReturnValue('refresh-token');
+  localLogoutMock.mockResolvedValue();
+  apiLogoutMock.mockRejectedValue(new Error('network'));
+
+  await expect(getLogoutMutationFn()()).resolves.toBeUndefined();
+  await Promise.resolve();
+  expect(localLogoutMock).toHaveBeenCalledTimes(1);
+});
+
+test('refresh token이 없으면 서버 요청 없이 로컬 로그아웃만 한다', async () => {
+  getRefreshTokenMock.mockReturnValue(null);
+  localLogoutMock.mockResolvedValue();
+
+  await getLogoutMutationFn()();
+
+  expect(apiLogoutMock).not.toHaveBeenCalled();
+  expect(localLogoutMock).toHaveBeenCalledTimes(1);
 });

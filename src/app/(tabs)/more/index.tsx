@@ -5,11 +5,15 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AlertModal from '@/components/AlertModal';
+import { SkeletonBlock } from '@/components/Skeleton';
+import { useCurrentUser, useLogout } from '@/tanstack/hooks';
 import Colors from '@/theme/color';
 
 export default function MoreScreen() {
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
   const appVersion = Constants.expoConfig?.version;
+  const { data: user, isPending } = useCurrentUser();
+  const { mutate: logout } = useLogout();
 
   function handleOpenLogout() {
     setIsLogoutVisible(true);
@@ -20,13 +24,22 @@ export default function MoreScreen() {
   }
 
   function handleLogout() {
-    // TODO: 로그아웃 API 연결
     setIsLogoutVisible(false);
+    logout();
   }
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <Text style={styles.title}>더보기</Text>
+      {isPending ? (
+        <SkeletonBlock width={120} height={28} style={styles.profile} />
+      ) : (
+        !!user && (
+          <Text style={[styles.profile, styles.name]} testID="profile-name">
+            {user.name}님
+          </Text>
+        )
+      )}
       <View style={styles.row}>
         <Text style={styles.label}>앱 버전</Text>
         <Text style={styles.value}>{appVersion}</Text>
@@ -61,6 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     letterSpacing: -1
   },
+  profile: { marginHorizontal: 20, marginBottom: 16 },
+  name: { fontFamily: 'Pretendard-Bold', fontSize: 22, letterSpacing: -0.6 },
   row: {
     minHeight: 56,
     flexDirection: 'row',

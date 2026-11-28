@@ -1,3 +1,5 @@
+import { queryOptions } from '@tanstack/react-query';
+
 import type { OrderStatus } from '@/graphql/__generated__/graphql';
 import API from '@/service/api';
 import type { Coords } from '@/stores/location';
@@ -10,6 +12,8 @@ const ONGOING_ORDER_STATUSES: OrderStatus[] = ['CREATED', 'CONFIRMED', 'IN_PROGR
 export async function getCurrentUser() {
   return API.currentUser();
 }
+
+export const currentUserQuery = queryOptions({ queryKey: ['currentUser'], queryFn: getCurrentUser });
 
 export async function getPromotions() {
   return API.promotions();
